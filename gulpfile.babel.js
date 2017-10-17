@@ -1,7 +1,7 @@
-import gulp from 'gulp'
-import gulpLoadPlugin from 'gulp-load-plugins'
+import gulp from 'gulp';
+import gulpLoadPlugin from 'gulp-load-plugins';
 
-const plugins = gulpLoadPlugin()
+const plugins = gulpLoadPlugin();
 
 gulp.task('start', () => {
   plugins.nodemon({
@@ -9,14 +9,13 @@ gulp.task('start', () => {
     script: 'dist/server.js',
     ext: 'js html jade',
     env: { NODE_ENV: 'development' }
-  })
-}) 
+  });
+}); 
 
 gulp.task('watch', () => {
   plugins.livereload.listen();
   gulp.watch('./public/**/*.scss', ['sass', 'transpile']);
   gulp.watch('./public/**/*.html', ['transpile']);
-  gulp.watch('./public/**/*.css', ['sass', 'transpile']);
   gulp.watch('./public/**/*.js', ['transpile']);
 });
 
@@ -68,7 +67,7 @@ gulp.task('sass', () => gulp.src('./public/**/*.scss')
   .pipe(plugins.livereload()));
 
 gulp.task('bower', () => {
-  plugins.bower({ directory: './public/lib' })
+  plugins.bower({ directory: './public/lib' });
 });
 
 gulp.task('default', ['bower', 'transpile', 'start', 'watch']);
