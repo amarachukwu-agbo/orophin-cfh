@@ -4,12 +4,12 @@
 var should = require('should'),
     app = require('../../server'),
     mongoose = require('mongoose'),
-    User = mongoose.model('User'),
-    Article = mongoose.model('Article');
+    User = mongoose.model('User')
+    // Article = mongoose.model('Article');
 
 //Globals
-var user;
-var article;
+// var user;
+// var article;
 
 //The tests
 xdescribe('<Unit Test>', function() {
