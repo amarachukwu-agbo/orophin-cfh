@@ -1,4 +1,24 @@
- .clear {
+.navbar {
+  padding-top: 2%;
+  padding-right: 4%;
+  padding-left: 4%;
+  background-color: #dceae8
+}
+
+span {
+  margin-top: 2%;
+  font-family: 'Baloo Chettan', cursive;
+  font-size: 30px;
+}
+
+a {
+  font-family: 'Baloo Chettan', cursive;
+  text-align: right;
+  color: #000000
+
+}
+
+.clear {
    clear:both;
  }
 
