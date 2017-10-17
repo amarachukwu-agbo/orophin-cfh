@@ -12,7 +12,7 @@ var user;
 var article;
 
 //The tests
-describe('<Unit Test>', function() {
+xdescribe('<Unit Test>', function() {
     describe('Model Article:', function() {
         beforeEach(function(done) {
             user = new User({
