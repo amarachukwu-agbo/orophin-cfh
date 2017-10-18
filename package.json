@@ -15,7 +15,7 @@
   "scripts": {
     "start": "gulp",
     "test": "gulp test",
-    "coveralls": "nyc report --reporter=text-lcov | coveralls",
+    "coveralls": "nyc npm test && nyc report --reporter=text-lcov  | coveralls",
     "test:client": "karma start"
   },
   "dependencies": {

@@ -8,6 +8,7 @@ reports/
 .coverrun
 coverage
 .coveralls.yml
-
+.nyc_output
+.coverdata
 .env
 
