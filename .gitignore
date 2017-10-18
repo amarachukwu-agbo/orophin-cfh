@@ -4,8 +4,11 @@ public/lib
 .DS_store
 c4h_keys.txt
 .coverrun
-reports/
-dist/
 coverage
 .coveralls.yml
+.nyc_output
+.coverdata
+reports/
+dist/
 .env
+
