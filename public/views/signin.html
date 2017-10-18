@@ -14,6 +14,7 @@
             <div class="col-md-9 wpb-menu-container">
               <ul class="wpb-main-menu">
                 <li><a href="/">Home</a></li>
+                <li><a href="signup">Sign Up</a></li>
               </ul>
             </div>
           </div>      
@@ -30,15 +31,7 @@
     <div class="row" id="main-text"> 
     <!-- Teaser Text Start -->
     <div id="landing-logo">
-      <h2 id="slogan">Sign in with:</h2>
-      <div id="login-buttons">
-        <a href="/auth/facebook"><img class="login-item" src="/img/icons/facebook.png"></a>
-        <a href="/auth/github"><img class="login-item" src="/img/icons/github.png"></a>
-        <a href="/auth/twitter"><img class="login-item" src="/img/icons/twitter.png"></a>
-        <a href="/auth/google"><img class="login-item" src="/img/icons/google.png"></a>
-      </div>
-      <p id="create">Or log in below:</p>
-
+      <h2 id="slogan">Sign In:</h2>
       <div class="sign-body">
         <div class="more-sign">
           <div class="sign-error" ng-show="showError() === 'invalid'">
@@ -59,6 +52,13 @@
             </div>
             <div class="form-actions top-margin">
               <button id="sign-up-btn-other" type='submit'>Sign In</button>
+            </div>
+           <p id="create">Or</p>
+            <div id="login-buttons">
+              <a href="/auth/facebook"><img class="login-item" src="/img/icons/facebook.png"></a>
+              <a href="/auth/github"><img class="login-item" src="/img/icons/github.png"></a>
+              <a href="/auth/twitter"><img class="login-item" src="/img/icons/twitter.png"></a>
+              <a href="/auth/google"><img class="login-item" src="/img/icons/google.png"></a>
             </div>
           </form>
         </div>
