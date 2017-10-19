@@ -4,19 +4,13 @@ import gulpLoadPlugin from 'gulp-load-plugins';
 const plugins = gulpLoadPlugin();
 
 gulp.task('start', () => {
+  plugins.livereload.listen();
   plugins.nodemon({
     watch: ['./dist', './app', './config', './public'],
     script: 'dist/server.js',
     ext: 'js html jade',
     env: { NODE_ENV: 'development' }
   });
-}); 
-
-gulp.task('watch', () => {
-  plugins.livereload.listen();
-  gulp.watch('./public/**/*.scss', ['sass', 'transpile']);
-  gulp.watch('./public/**/*.html', ['transpile']);
-  gulp.watch('./public/**/*.js', ['transpile']);
 });
 
 gulp.task('public', () => gulp.src([
@@ -29,24 +23,26 @@ gulp.task('public', () => gulp.src([
   .pipe(gulp.dest('dist')));
 
 gulp.task('transpile', ['public'], () => {
-  gulp.src(
-    [
-      './**/*.js',
-      '!dist/**',
-      '!node_modules/**',
-      '!public/lib/**'
-    ]
-  )
+  gulp.src([
+    './**/*.js',
+    '!dist/**',
+    '!gruntfile.js',
+    '!gulpfile.babel.js',
+    '!karma.conf.js',
+    '!node_modules/**',
+    '!public/lib/**'
+  ])
     .pipe(plugins.babel({
       presets: ['es2015']
     }))
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('dist'))
+    .pipe(plugins.livereload());
 });
 
 gulp.task('test', () => gulp.src(
   [
-    './test/game/game.js',
-    './test/user/model.js'
+    './dist/test/game/game.js',
+    './dist/test/user/model.js'
   ],
   { read: false }
 )
@@ -66,8 +62,16 @@ gulp.task('sass', () => gulp.src('./public/**/*.scss')
   .pipe(gulp.dest('./dist/css'))
   .pipe(plugins.livereload()));
 
+
 gulp.task('bower', () => {
   plugins.bower({ directory: './public/lib' });
+});
+
+gulp.task('watch', () => {
+  plugins.livereload.listen();
+  gulp.watch('./public/**/*.scss', ['sass', 'transpile']);
+  gulp.watch('./public/**/*.html', ['transpile']);
+  gulp.watch('./public/**/*.js', ['transpile']);
 });
 
 gulp.task('default', ['bower', 'transpile', 'start', 'watch']);
