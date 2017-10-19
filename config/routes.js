@@ -1,7 +1,9 @@
+const validateUserFields = require('../app/middlewares/userValidation');
+
 var async = require('async');
 
 module.exports = function(app, passport, auth) {
-    //User Routes
+    // User Routes
     var users = require('../app/controllers/users');
     app.get('/signin', users.signin);
     app.get('/signup', users.signup);
@@ -9,7 +11,7 @@ module.exports = function(app, passport, auth) {
     app.get('/signout', users.signout);
 
     //Setting up the users api
-    app.post('/users', users.create);
+    app.post('/api/auth/signup', validateUserFields, users.create);
     app.post('/users/avatars', users.avatars);
 
     // Donation Routes
