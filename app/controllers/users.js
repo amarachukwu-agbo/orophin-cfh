@@ -75,7 +75,7 @@ exports.create = (req, res) => {
     User.findOne({
       email: req.body.email
     }).exec((err, existingUser) => {
-      console.log(existingUser);
+      console.log(existingUser, 'fghv');
       if (!existingUser) {
         const user = new User(req.body);
         // Switch the user's avatar index to an actual avatar url
@@ -88,16 +88,26 @@ exports.create = (req, res) => {
               message: 'Failed'
             });
           } else if (!err) {
-            const generateToken = jwt.sign({ user }, process.env.TOKEN_SECRET, { expiresIn: '6h' });
+            const userData = {
+              id: user.id,
+              name: user.name,
+              email: user.email
+            };
+            const generateToken = jwt.sign(
+              { user: userData },
+              process.env.TOKEN_SECRET,
+              { expiresIn: process.env.TOKEN_EXPIRY_TIME }
+            );
             return res.status(201).send({
               message: 'User Account Created Successfully',
-              user,
+              user: userData,
               token: generateToken
             });
           }
-          return res.status(409).send({
-            message: 'Email already exists'
-          });
+        });
+      } else {
+        return res.status(409).send({
+          message: 'Email already exists'
         });
       }
     });
