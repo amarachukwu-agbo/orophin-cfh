@@ -1,21 +1,62 @@
+#background {
+  background-image: url('../img/background.png')
+}
+
 .navbar {
   padding-top: 2%;
-  padding-right: 4%;
-  padding-left: 4%;
-  background-color: #dceae8
+  padding-right: 6%;
+  padding-left: 6%;
+  background-color: #eaf0e6
 }
 
 span {
-  margin-top: 2%;
   font-family: 'Baloo Chettan', cursive;
-  font-size: 30px;
+  font-size: 25px;
 }
 
-a {
+h1 {
+  padding-top: 8%;
+  padding-left: 6%;
+  font-size: 50px;
+  width: 15em; 
+  word-wrap: break-word;
+  font-family: 'Baloo Chettan', cursive;
+  color: #e46834;
+}
+
+.buttn {
+  padding-top: 3%;
+  padding-left: 6%;
+  padding-bottom: 6%
+}
+
+.btn-signup {
+  background-color: #e46834;
+  border-radius: 20px;
+  box-shadow: 5%;
+  cursor: pointer;
+}
+
+.btn-signin {
+  background-color: #eaf0e6;
+  border-radius: 20px;
+  box-shadow: 5%;
+  cursor: pointer;
+}
+
+p {
+  padding-top: 3%;
+  padding-left: 6%;
+  font-size: 16px;
+  width: 45em; 
+  word-wrap: break-word;
+  color: #FFEFEF;
+}
+
+.navbar.navbar-expand-lg.navbar-light li a {
   font-family: 'Baloo Chettan', cursive;
   text-align: right;
-  color: #000000
-
+  color: #000000;
 }
 
 .clear {
