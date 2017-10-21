@@ -16,17 +16,31 @@ angular.module('mean.system')
       }
     };
 
+    const onSignupSuccessful = (response) => {
+      console.log(response);
+      if (response.data.token) {
+        localStorage.setItem('token', response.data.token);
+        $http.defaults.headers.common['x-access-token'] = `'Bearer${response.data.token}`;
+        $location.path('/#!');
+      }
+    };
+
+    const onError = (err) => {
+      console.log(err, 'rr');
+      $scope.data.name = '';
+      $scope.data.email = '';
+      $scope.data.password = '';
+      $scope.error = err.data.message;
+    };
+
     // function to signup user
-    $scope.signUp = function () {
-      $http.post('/api/auth/signup', JSON.stringify($scope.data))
-        .then((user) => {
-          if (user.data.token) {
-            localStorage.setItem('token', user.data.token);
-            $http.defaults.headers.common['x-access-token'] = `'Bearer${user.data.token}`;
-            $location.path('/#!');
-          }
-        })
-    }
+    $scope.signUp = () => {
+      if ($scope.data.name && $scope.data.email && $scope.data.password) {
+        $http.post('/api/auth/signup', JSON.stringify($scope.data))
+          .then(onSignupSuccessful, onError);
+      }
+    };
+
     $scope.avatars = [];
     AvatarService.getAvatars()
       .then(function (data) {

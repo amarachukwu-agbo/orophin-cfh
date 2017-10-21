@@ -1,4 +1,7 @@
 const validateUserFields = (req, res, next) => {
+
+  const emailFormat = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+
   // check if username field is empty
   if (!req.body.name || req.body.name.trim() === '') {
     return res.status(400).send({ message: 'name field cannot be empty' });
@@ -18,6 +21,9 @@ const validateUserFields = (req, res, next) => {
   // check if password field contains more than 3 characters
   if (req.body.password.length < 4) {
     return res.status(400).send({ message: 'password field must have more than 3 characters' });
+  }
+  if (emailFormat.test(req.body.email) === false) {
+    return res.status(400).send({ message: 'Invalid Email!' });
   }
   return next();
 };
