@@ -65,17 +65,14 @@ exports.checkAvatar = (req, res) => {
     // If user doesn't even exist, redirect to /
     res.redirect('/');
   }
-
 };
 
 // Create user
 exports.create = (req, res) => {
   if (req.body.name && req.body.password && req.body.email) {
-    console.log(req.body);
     User.findOne({
       email: req.body.email
     }).exec((err, existingUser) => {
-      console.log(existingUser, 'fghv');
       if (!existingUser) {
         const user = new User(req.body);
         // Switch the user's avatar index to an actual avatar url
@@ -89,9 +86,7 @@ exports.create = (req, res) => {
             });
           } else if (!err) {
             const userData = {
-              id: user.id,
-              name: user.name,
-              email: user.email
+              id: user.id
             };
             const generateToken = jwt.sign(
               { user: userData },

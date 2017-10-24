@@ -17,20 +17,25 @@ angular.module('mean.system')
     };
 
     const onSignupSuccessful = (response) => {
-      console.log(response);
       if (response.data.token) {
+        // set token in local storage
         localStorage.setItem('token', response.data.token);
-        $http.defaults.headers.common['x-access-token'] = `'Bearer${response.data.token}`;
+        $http.defaults.headers.common['x-access-token'] = response.data.token;
         $location.path('/#!');
       }
     };
 
     const onError = (err) => {
-      console.log(err, 'rr');
+      // clear input fields
       $scope.data.name = '';
       $scope.data.email = '';
       $scope.data.password = '';
+      // set error message
       $scope.error = err.data.message;
+      // clear error message  after 5 seconds
+      setTimeout(() => {
+        $scope.error = '';
+      }, 5000);
     };
 
     // function to signup user
@@ -39,6 +44,13 @@ angular.module('mean.system')
         $http.post('/api/auth/signup', JSON.stringify($scope.data))
           .then(onSignupSuccessful, onError);
       }
+    };
+
+    // function to signup user
+    $scope.signOut = () => {
+      // clear token from localStorage
+      localStorage.clear();
+      $location.path('/#!');
     };
 
     $scope.avatars = [];
