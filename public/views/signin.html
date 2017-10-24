@@ -1,17 +1,15 @@
-<div id="main-bod" ng-controller="IndexController">
-  <!-- Fixed Logo & Menu Bar Start -->
-  <div id="top-part">
-    <div class="wpb-top-bar">
+<div id="" ng-controller="IndexController">
+  <div id="">
+    <div class="">
       <div class="mod-contain" id="navver">
         <div class="row">
-          <!-- Logo -->
-          <div class="wpb-logo-container">
-            <div id="landing-logo"> 
+          <div class="">
+            <div id=""> 
               <span id="first-word">Cards</span>
               <span id="second-word"> for</span> 
               <span id="third-word">Humanity</span> 
             </div> 
-            <div class="col-md-9 wpb-menu-container">
+            <div class="">
               <ul class="wpb-main-menu">
                 <li><a href="/">Home</a></li>
                 <li><a href="signup">Sign Up</a></li>
@@ -25,47 +23,61 @@
 <!-- Fixed Logo & Menu Bar End -->
 
 <!-- Landing Start -->
-<div class="wpb-teaser parallax-background" id="homer">
-  <div class="background-opacity"></div> 
-  <div class="modified-container">
-    <div class="row" id="main-text"> 
-    <!-- Teaser Text Start -->
-    <div id="landing-logo">
-      <h2 id="slogan">Sign In:</h2>
-      <div class="sign-body">
-        <div class="more-sign">
-          <div class="sign-error" ng-show="showError() === 'invalid'">
-            Please check your username/password and try again.
-          </div>
-          <form class="signup form-horizontal" action="/users/session" method="post">
-            <div class="control-group">
-              <label for="email" class="control-label"></label>
-              <div class="controls">
-                <input class="input-info" id="email" type="text" name="email" placeholder="Email" required novalidate />
-              </div>
-            </div>
-            <div class="control-group">
-              <label for="password" class="control-label"></label>
-              <div class="controls">
-                <input class="input-info" id="password" type="password" name="password" placeholder="Password" required novalidate />
-              </div>
-            </div>
-            <div class="form-actions top-margin">
-              <button id="sign-up-btn-other" type='submit'>Sign In</button>
-            </div>
-           <p id="create">Or</p>
-            <div id="login-buttons">
-              <a href="/auth/facebook"><img class="login-item" src="/img/icons/facebook.png"></a>
-              <a href="/auth/github"><img class="login-item" src="/img/icons/github.png"></a>
-              <a href="/auth/twitter"><img class="login-item" src="/img/icons/twitter.png"></a>
-              <a href="/auth/google"><img class="login-item" src="/img/icons/google.png"></a>
-            </div>
-          </form>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <form class="z-depth-4 auth-form-style" action="/users/session" method="post">
+        <h2 class="form-header">Sign In</h2>
+        <div class="sign-error" ng-show="showError() === 'invalid'">
+          Please check your username/password and try again.
         </div>
-      </div>
-    </div>
-    </div>
+        <div class="md-form" id="form-color-focus">
+          <i class="material-icons prefix">account_circle</i>
+          <input class="form-control " id="email" type="email" name="email" required novalidate />
+          <label for="email">Email</label>
+        </div>
+        <div class="md-form">
+          <i class="material-icons prefix">lock</i>
+          <input class="form-control" id="password" type="password" name="password" required novalidate />
+          <label for="password" class="">Password</label>
+        </div>
+        <div class="sign-btn-wrapper">
+          <button class="btn form-button" type='submit'>SignIn</button>
+          <p class="text-right">Don't have an account?
+            <a href="signup">Register</a>
+          </p>
+        </div>
+        <div class="oauth-auth">
+          <p>or Signin with</p>
+          <a href="/auth/twitter" class="btn btn-social-icon btn-twitter">
+            <span class="fa fa-twitter"></span>
+          </a>
+          <a href="/auth/facebook" class="btn btn-social-icon btn-facebook">
+            <span class="fa fa-facebook"></span>
+          </a>
+          <a href="/auth/github" class="btn btn-social-icon btn-github">
+            <span class="fa fa-github"></span>
+          </a>
+          <a href="/auth/google" class="btn btn-social-icon btn-google">
+            <span class="fa fa-google"></span>
+          </a>
+        </div>
+      </form>
     </div>
   </div>
 </div>
-
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+          <!-- <small>Legal stuff: This game is based on the Cards Against Humanity card game, which is CC licensed (BY-NC-SA). Cards for Humanity
+              is not affiliated with Cards Against Humanity. In complying with the Creative Commons license of the Cards
+              Against Humanity card game, all proceeds from donations go directly to charity, as managed by crowdrise.
+            </small> -->
+            <p class="text-center">
+              Designed by:Team Orophin
+            </p>  
+      </div>
+    </div>
+  </div>
+</footer>

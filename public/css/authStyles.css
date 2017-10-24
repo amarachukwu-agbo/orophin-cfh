@@ -1,0 +1,92 @@
+a{
+  color: #782149;
+}
+p, span, div, button, {
+  font-family: 'Ubuntu', sans-serif;
+}
+a:hover{
+  color: rgb(216, 67, 44);
+}
+.auth-form-style{
+  padding: 15px;
+  margin-top: 30px;
+}
+.auth-form-style h2{
+  text-align: center;
+  color: #782149;
+  font-family: 'Bree Serif', serif;;
+  font-size: 20px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+.auth-form-style .form-button{
+  border-radius: 20px;
+  display: inline-block;
+  background-color: #8F3527;
+}
+
+.auth-form-style .form-button:hover{
+  background: rgb(216, 67, 44);
+}
+.sign-btn-wrapper{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.sign-btn-wrapper p{
+  margin: 0 10px;
+}
+
+.oauth-list{
+  background-color: darkgrey;
+  margin: -15px;
+}
+.oauth-auth{
+  text-align: center;
+  margin-right: -15px;
+  margin-left: -15px;  
+  margin-bottom: -15px;  
+  color: #fff;
+  padding: 10px;
+  background-color: grey;
+}
+.auth-form-style{
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+.sign-error{
+  color: red;
+  text-align: center;
+  margin: 4px;
+  padding: 2px;
+}
+input[type=password]:focus:not([readonly])+label,
+input[type=email]:focus:not([readonly])+label,
+input[type=text]:focus:not([readonly])+label
+{
+  color:green;
+}
+input[type=password]:focus:not([readonly]),
+input[type=email]:focus:not([readonly]),
+input[type=text]:focus:not([readonly])
+{
+  -webkit-box-shadow: 0 1px 0 0 green;
+  box-shadow: 0 1px 0 0 green;
+  border-bottom: green;
+}
+.md-form .prefix.active{
+  color: green;
+}
+.form-control:focus{
+  border-color: green;
+}
+footer{
+  background-color: black;
+  padding: 20px;
+  color: grey;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}

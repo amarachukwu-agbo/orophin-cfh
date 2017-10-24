@@ -1,10 +1,8 @@
-<div id="main-bod">
-  <!-- Fixed Logo & Menu Bar Start -->
+<!-- <div id="main-bod">
   <div id="top-part">
     <div class="wpb-top-bar">
       <div class="mod-contain" id="navver">
         <div class="row">
-          <!-- Logo -->
           <div class="wpb-logo-container">
             <div id="landing-logo"> 
               <span id="first-word">Cards</span>
@@ -21,65 +19,67 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 <!-- Fixed Logo & Menu Bar End -->
 
 <!-- Landing Start -->
-<div class="wpb-teaser parallax-background" id="homer">
-  <div class="background-opacity"></div> 
-  <div class="modified-container">
-    <div class="row" id="main-text"> 
-    <!-- Teaser Text Start -->
-    <div id="landing-logo">
-      <h2 id="slogan">Sign Up</h2>
-      <div class="sign-body">
-        <div class="more-sign">
-          <form class="signup form-horizontal" action="/users" method="post">
-            <div class="control-group">
-              <label for="name" class="control-label"></label>
-              <div class="controls">
-                <input class="input-info" id="name" type="text" name="name" placeholder="Full name" required novalidate />
-              </div>
-            </div>
-            <div class="control-group">
-              <label for="email" class="control-label"></label>
-              <div class="controls">
-                <input class="input-info" id="email" type="email" name="email" placeholder="Email" required novalidate />
-              </div>
-            </div>
-            <div class="control-group">
-              <label for="password" class="control-label"></label>
-              <div class="controls">
-                <input class="input-info" id="password" type="password" name="password" placeholder="Password" required novalidate />
-              </div>
-            </div>
-            <div id="contain-avatars">
-              <ul ng-controller="IndexController" class="avatar-list">
-                <li ng-repeat="avatar in avatars" class="avatars ng-scope">
-                  <input name="avatar" type='radio' value="{{$index}}">
-                    <img ng-src="{{avatar}}">
-                  </input>
-                </li>
-              </ul>
-            </div>
-            <div class="form-actions">
-              <button id="sign-up-btn-other" type='submit'>Sign Up</button>
-            </div>
-            <p>OR</p>
-            <div id="login-buttons">
-              <a href="/auth/facebook"><img class="login-item" src="/img/icons/facebook.png"></a>
-              <a href="/auth/github"><img class="login-item" src="/img/icons/github.png"></a>
-              <a href="/auth/twitter"><img class="login-item" src="/img/icons/twitter.png"></a>
-              <a href="/auth/google"><img class="login-item" src="/img/icons/google.png"></a>
-            </div>
-          </form>
+<div class="container">
+  <div class="row sign-up-form">
+    <div class="col-md-6 offset-md-3">
+      <form class="z-depth-4 auth-form-style" action="/users" method="post">
+        <h2 class="form-header">Sign Up</h2>
+        <div class="md-form">
+          <i class="material-icons prefix">account_circle</i>
+          <input class="form-control" id="name" type="text" name="name" required novalidate />
+          <label for="name">Full name</label>
         </div>
-      </div>
-    </div>
-    </div>
+        <div class="md-form">
+          <i class="material-icons prefix">email</i>
+          <input class="form-control" id="email" type="email" name="email" required novalidate />
+          <label for="email">Email</label>
+        </div>
+        <div class="md-form">
+          <i class="material-icons prefix">lock</i>
+          <input class="form-control" id="password" type="password" name="password" required novalidate />
+          <label for="password">Password</label>
+        </div>
+        <div class="sign-btn-wrapper">
+          <button class="btn form-button" type='submit'>SignUp</button>
+          <p class="text-right">Have an account?
+            <a href="signin">Signin</a>
+          </p>
+        </div>
+        <div class="oauth-auth">
+          <p>or Signup with</p>
+          <a href="/auth/twitter" class="btn btn-social-icon btn-twitter">
+            <span class="fa fa-twitter"></span>
+          </a>
+          <a href="/auth/facebook" class="btn btn-social-icon btn-facebook">
+            <span class="fa fa-facebook"></span>
+          </a>
+          <a href="/auth/github" class="btn btn-social-icon btn-github">
+            <span class="fa fa-github"></span>
+          </a>
+          <a href="/auth/google" class="btn btn-social-icon btn-google">
+            <span class="fa fa-google"></span>
+          </a>
+        </div>
+      </form>
     </div>
   </div>
 </div>
-
-
-
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+          <!-- <small>Legal stuff: This game is based on the Cards Against Humanity card game, which is CC licensed (BY-NC-SA). Cards for Humanity
+              is not affiliated with Cards Against Humanity. In complying with the Creative Commons license of the Cards
+              Against Humanity card game, all proceeds from donations go directly to charity, as managed by crowdrise.
+            </small> -->
+            <p class="text-center">
+              Designed by:Team Orophin
+            </p>  
+      </div>
+    </div>
+  </div>
+</footer>
