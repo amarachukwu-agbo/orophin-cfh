@@ -4,6 +4,77 @@ a{
 p, span, div, button, {
   font-family: 'Ubuntu', sans-serif;
 }
+.navbar {
+  padding-top: 2%;
+  padding-right: 6%;
+  padding-left: 6%;
+  background-color: rgba(0, 0, 0, 0.5)
+}
+
+.navbar-nav {
+  font-family: 'Bree Serif', serif;
+  text-align: right;
+  font-size: 14px;
+  color: white;
+}
+
+.navbar.navbar-dark .navbar-nav .nav-item.active>.nav-link{
+  padding-left: 5px;
+  background-color:initial;
+}
+
+.fixed-top{
+  position: static;
+}
+
+.snip li {
+  display: inline-block;
+  list-style: outside none none;
+  margin: 0.5em 0.6em;
+  position: relative;
+}
+.snip li a {
+  color: #fff;
+  text-decoration: none;
+}
+.snip li:before,
+.snip li:after {
+  -webkit-transition: all 0.35s ease;
+  transition: all 0.35s ease;
+  height: 2px;
+  width: 35%;
+  background-color: #782149;
+  position: absolute;
+  content: '';
+  opacity: 0;
+}
+.snip li:before {
+  top: 0;
+  left: 0;
+}
+.snip li:after {
+  bottom: 0;
+  right: 0;
+}
+.snip li:hover:before,
+.snip li.hover:before,
+.snip li:hover:after,
+.snip li.hover:after {
+  opacity: 1;
+}
+.snip li:hover:before,
+.snip li.hover:before {
+  left: 65%;
+}
+.snip li:hover:after,
+.snip li.hover:after {
+  right: 65%;
+}
+
+.navbar-toggler {
+  color: white;
+}
+
 a:hover{
   color: rgb(216, 67, 44);
 }
@@ -22,11 +93,11 @@ a:hover{
 .auth-form-style .form-button{
   border-radius: 20px;
   display: inline-block;
-  background-color: #8F3527;
+  background-color: #782149;
 }
 
 .auth-form-style .form-button:hover{
-  background: rgb(216, 67, 44);
+  background: #8F3527;
 }
 .sign-btn-wrapper{
   display: flex;
@@ -56,6 +127,7 @@ a:hover{
   margin-bottom: 10px;
 }
 .sign-error{
+  display: none;
   color: red;
   text-align: center;
   margin: 4px;
