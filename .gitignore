@@ -3,4 +3,14 @@ public/lib
 .sass-cache/
 .DS_store
 c4h_keys.txt
+.coverrun
+coverage
+.coveralls.yml
+.nyc_output
+.coverdata
+reports/
+dist/
+.env
+npm-debug.log
+
 
