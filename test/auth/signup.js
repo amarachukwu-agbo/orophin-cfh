@@ -14,8 +14,9 @@ const signupUrl = `${rootURL}/signup`;
 const token = [];
 let data, testData;
 
+const User = mongoose.model('User');
 // delete all records in User model
-mongoose.model('User').collection.drop();
+User.collection.drop();
 
 describe('Test Server Connection', () => {
   it('should return a 200 status to show server is working', (done) => {
@@ -46,10 +47,11 @@ describe('Catch invalid routes', () => {
 describe('User signup', () => {
   beforeEach(() => {
     data = {
-      name: 'Emeka',
-      email: 'emeka1@test.com',
-      password: 'abcde'
-    };
+      name: 'Emeka Nwabuzor',
+      email: 'emeka@test.com',
+      username: 'user',
+      password: 'password'
+    }
   })
   it('should return a message for null username field', (done) => {
     testData = Object.assign({}, data);
