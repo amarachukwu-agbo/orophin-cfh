@@ -234,20 +234,9 @@ w{
 }
 
 .how-to-card-img:hover {
-  animation: wiggle 1s linear;
+  transform: scale(1.2);
   z-index: 30;
-}
 
-@keyframes wiggle {
-  5%{ transform:  scale(1.2) }
-  35%{ transform: scale(1.2) }
-  55%{ transform: scale(1.2) }
-  60%{ transform: scale(1.2) }
-  65%{ transform: scale(1.2) }
-  70%{ transform: scale(1.2) }
-  75%{ transform: scale(1.2) }
-  80%{ transform: scale(1.2) }
-  85%{ transform: scale(1.2) }
 }
 
 @media(min-width: 300px) and (max-width: 950px) {
