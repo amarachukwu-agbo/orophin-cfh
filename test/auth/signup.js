@@ -3,7 +3,6 @@
  */
 const supertest = require('supertest'),
   app = require('../../server'),
-  jwt = require('jsonwebtoken'),
  expect = require('chai').expect,
  mongoose = require('mongoose'),
  should = require('chai');
@@ -12,37 +11,33 @@ const supertest = require('supertest'),
 const server = supertest(app);
 const rootURL = '/api/auth';
 const signupUrl = `${rootURL}/signup`;
+const token = [];
 let data, testData;
 
 // delete all records in User model
 mongoose.model('User').collection.drop();
-const token = [];
-const invalidToken = jwt.sign({ userID: 2, }, 'jsninja', { expiresIn: '6h' });
-const expiredToken = jwt.sign({ userID: 2, }, 'jsninja', { expiresIn: '2s' });
 
 describe('Test Server Connection', () => {
-  it('should respond with Status connected ok', (done) => {
+  it('should return a 200 status to show server is working', (done) => {
     server
       .get('/')
       .set('Connection', 'keep alive')
       .set('Content-Type', 'application/json')
       .end((err, res) => {
-        expect('Content-Type', /json/);
-        expect(res.statusCode).to.equal(200);
+        res.status.should.equal(200);
         if (err) return done(err);
         done();
       });
   });
 });
 describe('Catch invalid routes', () => {
-  it('should return a 404 if route not found', (done) => {
+  it('should return a 404 status if route not found', (done) => {
     server
       .get('/ydddfh')
       .set('Connection', 'keep alive')
       .set('Content-Type', 'application/json')
       .end((err, res) => {
-        expect(res.statusCode).to.equal(404);
-        expect(res.body.message).to.equal(undefined);
+        res.status.should.equal(404);
         if (err) return done(err);
         done();
       });
