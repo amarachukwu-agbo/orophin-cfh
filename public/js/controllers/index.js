@@ -1,7 +1,17 @@
 angular.module('mean.system')
-  .controller('IndexController', ['$scope', '$window', 'Global', '$location', 'socket', 'game', '$http', 'AvatarService', function ($scope, Global, $window, $location, socket, game, $http, AvatarService) {
+  .controller('IndexController', ['$scope', '$window', 'Global', '$location', '$cookies', 'socket', 'game', '$http', '$cookieStore', 'AvatarService', function ($scope, Global, $window, $location, $cookies, socket, game, $http, $cookieStore, AvatarService) {
+
+    // check if token is saved in cookies
+    $scope.checkCookieToken = () => {
+      if ($cookies.token) {
+        localStorage.setItem('token', $cookies.token);
+        $http.defaults.headers.common['x-access-token'] = $cookies.token;
+      }
+    }
+
     $scope.global = Global;
     $scope.data = {};
+    $scope.checkCookieToken();
 
     $scope.playAsGuest = function () {
       game.joinGame();
@@ -48,7 +58,11 @@ angular.module('mean.system')
 
     // function to signup user
     $scope.signOut = () => {
-      // clear token from localStorage
+      // clear token from cookies
+      angular.forEach($cookies, (v, k) => {
+        $cookieStore.remove(k);
+      });
+    // clear token from localStorage
       localStorage.clear();
       $location.path('/#!');
     };

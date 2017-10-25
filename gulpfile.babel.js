@@ -4,12 +4,11 @@ import gulpLoadPlugin from 'gulp-load-plugins';
 const plugins = gulpLoadPlugin();
 
 gulp.task('start', () => {
-  plugins.livereload.listen();
   plugins.nodemon({
-    watch: ['./dist', './app', './config', './public'],
-    script: 'dist/server.js',
+    watch: ['./app', './config', './public', 'server.js'],
+    script: './dist/server.js',
     ext: 'js html jade',
-    env: { NODE_ENV: 'development' }
+    env: { NODE_ENV: 'development' },
   });
 });
 
@@ -41,9 +40,10 @@ gulp.task('transpile', ['public'], () => {
 
 gulp.task('test', () => gulp.src(
   [
-    './dist/test/game/game.js',
-    './dist/test/user/model.js',
-    './dist/test/auth/signup.js'
+    './test/game/game.js',
+    './test/user/model.js',
+    './test/article/model.js',
+    './test/auth/signup.js'
   ],
   { read: false }
 )
@@ -72,7 +72,7 @@ gulp.task('watch', () => {
   plugins.livereload.listen();
   gulp.watch('./public/**/*.scss', ['sass', 'transpile']);
   gulp.watch('./public/**/*.html', ['transpile']);
-  gulp.watch('./public/**/*.js', ['transpile']);
+  gulp.watch('./public/js/*.js', ['transpile']);
 });
 
 gulp.task('default', ['bower', 'transpile', 'start', 'watch']);

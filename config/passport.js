@@ -5,7 +5,10 @@ var mongoose = require('mongoose'),
     GitHubStrategy = require('passport-github').Strategy,
     GoogleStrategy = require('passport-google-oauth').OAuth2Strategy,
     User = mongoose.model('User'),
-    config = require('./config');
+    config = require('./config'),
+    dotenv = require('dotenv');
+    
+    dotenv.load();
 
 
 module.exports = function(passport) {

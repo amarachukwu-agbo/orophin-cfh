@@ -1,18 +1,19 @@
-const jwt = require('jsonwebtoken');
-const dotenv = require('dotenv');
-
-dotenv.load();
-
 /**
  * Module dependencies.
  */
 const mongoose = require('mongoose'),
   User = mongoose.model('User');
 const avatars = require('./avatars').all();
+const generateToken = require('../helpers/generateToken');
 
 // Auth callback
 exports.authCallback = (req, res, next) => {
-  res.redirect('/chooseavatars');
+  if (!req.user) {
+    res.redirect('/#!/signin?error=invalid');
+  } else {
+    res.cookie('token', generateToken(req.user._id));
+    res.redirect('/chooseavatars');
+  }
 };
 
 // Show login form
@@ -88,15 +89,10 @@ exports.create = (req, res) => {
             const userData = {
               id: user.id
             };
-            const generateToken = jwt.sign(
-              { user: userData },
-              process.env.TOKEN_SECRET,
-              { expiresIn: process.env.TOKEN_EXPIRY_TIME }
-            );
             return res.status(201).send({
               message: 'User Account Created Successfully',
               user: userData,
-              token: generateToken
+              token: generateToken(userData)
             });
           }
         });
