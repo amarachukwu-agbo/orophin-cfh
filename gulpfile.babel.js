@@ -40,10 +40,7 @@ gulp.task('transpile', ['public'], () => {
 
 gulp.task('test', () => gulp.src(
   [
-    './test/game/game.js',
-    './test/user/model.js',
-    './test/article/model.js',
-    './test/auth/signup.js'
+    './test/**/*.js'
   ],
   { read: false }
 )

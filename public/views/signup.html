@@ -1,4 +1,4 @@
-<div id="main-bod" ng-controller="IndexController">
+<div id="main-bod" ng-show="showAuthPage()" ng-controller="IndexController">
   <!-- Fixed Logo & Menu Bar Start -->
   <div id="top-part">
     <div class="wpb-top-bar">
@@ -42,7 +42,7 @@
           <div class="sign-body">
             <div class="more-sign">
               <div class="alert error-alert" style="color: white;">
-                {{ error }}
+                {{ errorMessage }}
               </div>
               <form class="signup form-horizontal" ng-submit="signUp()" method="post">
                 <div class="control-group">

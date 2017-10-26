@@ -1,5 +1,4 @@
-const validateUserFields = (req, res, next) => {
-
+const signupValidation = (req, res, next) => {
   const emailFormat = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 
   // check if username field is empty
@@ -28,4 +27,4 @@ const validateUserFields = (req, res, next) => {
   return next();
 };
 
-module.exports = validateUserFields;
+module.exports = signupValidation;

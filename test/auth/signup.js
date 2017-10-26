@@ -3,10 +3,8 @@
  */
 const supertest = require('supertest'),
   app = require('../../server'),
- expect = require('chai').expect,
- mongoose = require('mongoose'),
- should = require('chai');
-
+  { expect, should } = require('chai'),
+  mongoose = require('mongoose');
 
 const server = supertest(app);
 const rootURL = '/api/auth';
@@ -47,13 +45,12 @@ describe('Catch invalid routes', () => {
 describe('User signup', () => {
   beforeEach(() => {
     data = {
-      name: 'Emeka Nwabuzor',
-      email: 'emeka@test.com',
-      username: 'user',
-      password: 'password'
-    }
-  })
-  it('should return a message for null username field', (done) => {
+      name: 'Emeka',
+      email: 'emeka1@test.com',
+      password: 'abcde'
+    };
+  });
+  it('should return a message for null name field', (done) => {
     testData = Object.assign({}, data);
     testData.name = '';
     server
@@ -105,56 +102,56 @@ describe('User signup', () => {
       });
   });
   it('should return a message for invalid username length', (done) => {
-	  testData = Object.assign({},data);
-	  testData.name = 'ekc';
-	    server
-	    .post(signupUrl)
-	    .set('Connection', 'keep alive')
-	    .set('Accept', 'application/json')
-	    .set('Content-Type', 'application/json')
-	    .type('form')
-	    .send(testData)
-	    .end((err,res) => {
-	      res.status.should.equal(400);
-	      res.body.message.should.equal('name field must have more than 3 characters');
-	      if (err) return done(err);
-	      done();
-	    });
-	});
-	it('should return a message for invalid password length', (done) => {
-	  testData = Object.assign({},data);
-	  testData.password = 'as';
-	    server
-	    .post(signupUrl)
-	    .set('Connection', 'keep alive')
-	    .set('Accept', 'application/json')
-	    .set('Content-Type', 'application/json')
-	    .type('form')
-	    .send(testData)
-	    .end((err,res) => {
-	      res.status.should.equal(400);
-	      res.body.message.should.equal('password field must have more than 3 characters');
-	      if (err) return done(err);
-	      done();
-	    });
+    testData = Object.assign({}, data);
+    testData.name = 'ekc';
+    server
+      .post(signupUrl)
+      .set('Connection', 'keep alive')
+      .set('Accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .type('form')
+      .send(testData)
+      .end((err, res) => {
+        res.status.should.equal(400);
+        res.body.message.should.equal('name field must have more than 3 characters');
+        if (err) return done(err);
+        done();
+      });
+  });
+  it('should return a message for invalid password length', (done) => {
+    testData = Object.assign({}, data);
+    testData.password = 'as';
+    server
+      .post(signupUrl)
+      .set('Connection', 'keep alive')
+      .set('Accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .type('form')
+      .send(testData)
+      .end((err, res) => {
+        res.status.should.equal(400);
+        res.body.message.should.equal('password field must have more than 3 characters');
+        if (err) return done(err);
+        done();
+      });
   });
   it('should return a message for invalid email', (done) => {
-	  testData = Object.assign({},data);
-	  testData.email = 'john@yahoo';
-	    server
-	    .post(signupUrl)
-	    .set('Connection', 'keep alive')
-	    .set('Accept', 'application/json')
-	    .set('Content-Type', 'application/json')
-	    .type('form')
-	    .send(testData)
-	    .end((err,res) => {
-	      res.status.should.equal(400);
-	      res.body.message.should.equal('Invalid Email!');
-	      if (err) return done(err);
-	      done();
-	    });
-	});
+    testData = Object.assign({}, data);
+    testData.email = 'john@yahoo';
+    server
+      .post(signupUrl)
+      .set('Connection', 'keep alive')
+      .set('Accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .type('form')
+      .send(testData)
+      .end((err, res) => {
+        res.status.should.equal(400);
+        res.body.message.should.equal('Invalid Email!');
+        if (err) return done(err);
+        done();
+      });
+  });
   it('should return message for successful account creation', (done) => {
     testData = Object.assign({}, data);
     server
@@ -171,21 +168,21 @@ describe('User signup', () => {
         if (err) return done(err);
         done();
       });
-    });
-    it('should return message for entering an existing email', (done) => {
-      testData = Object.assign({}, data);
-      server
-        .post(signupUrl)
-        .set('Connection', 'keep alive')
-        .set('Accept', 'application/json')
-        .set('Content-Type', 'application/json')
-        .type('form')
-        .send(testData)
-        .end((err, res) => {
-          res.status.should.equal(409);
-          expect(res.body.message).to.equal('Email already exists');
-          if (err) return done(err);
-          done();
-        });
+  });
+  it('should return message for entering an existing email', (done) => {
+    testData = Object.assign({}, data);
+    server
+      .post(signupUrl)
+      .set('Connection', 'keep alive')
+      .set('Accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .type('form')
+      .send(testData)
+      .end((err, res) => {
+        res.status.should.equal(409);
+        expect(res.body.message).to.equal('Email already exists');
+        if (err) return done(err);
+        done();
       });
   });
+});

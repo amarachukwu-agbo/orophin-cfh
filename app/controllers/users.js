@@ -7,7 +7,7 @@ const avatars = require('./avatars').all();
 const generateToken = require('../helpers/generateToken');
 
 // Auth callback
-exports.authCallback = (req, res, next) => {
+exports.authCallback = (req, res) => {
   if (!req.user) {
     res.redirect('/#!/signin?error=invalid');
   } else {
@@ -45,11 +45,12 @@ exports.session = (req, res) => {
   res.redirect('/');
 };
 
-/** 
+/**
  * Check avatar - Confirm if the user who logged in via passport
  * already has an avatar. If they don't have one, redirect them
  * to our Choose an Avatar page.
  */
+
 exports.checkAvatar = (req, res) => {
   if (req.user && req.user._id) {
     User.findOne({
@@ -113,7 +114,7 @@ exports.avatars = (req, res) => {
     User.findOne({
       _id: req.user._id
     })
-      .exec(function (err, user) {
+      .exec((err, user) => {
         user.avatar = avatars[req.body.avatar];
         user.save();
       });
@@ -151,11 +152,11 @@ exports.addDonation = (req, res) => {
 
 // Show profile
 exports.show = (req, res) => {
-  var user = req.profile;
+  const user = req.profile;
 
   res.render('users/show', {
     title: user.name,
-    user: user
+    user
   });
 };
 
@@ -172,8 +173,28 @@ exports.user = (req, res, next, id) => {
     })
     .exec((err, user) => {
       if (err) return next(err);
-      if (!user) return next(new Error('Failed to load User ' + id));
+      if (!user) return next(new Error(`Failed to load User ${id}`));
       req.profile = user;
       next();
     });
+};
+
+exports.login = (req, res, next) => {
+  const { email, password } = req.body.auth;
+  User.findOne({
+    email
+  }).exec((err, user) => {
+    if (err) return next(err);
+    if (!user) return res.status(401).send({ message: 'wrong email or password' });
+    const isLogin = user.authenticate(password);
+    if (!isLogin) return res.status(401).send({ message: 'wrong email or password' });
+    const userData = {
+      _id: user._id
+    };
+    res.send({
+      message: 'login successful',
+      user: userData,
+      token: generateToken(userData)
+    });
+  });
 };

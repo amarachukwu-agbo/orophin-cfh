@@ -1,95 +1,102 @@
-const validateUserFields = require('../app/middlewares/userValidation');
+const async = require('async');
+const users = require('../app/controllers/users');
+const answers = require('../app/controllers/answers');
+const questions = require('../app/controllers/questions');
+const avatars = require('../app/controllers/avatars');
+const index = require('../app/controllers/index');
 
-var async = require('async');
+// Signup
+const loginValidation = require('./middlewares/loginValidation');
+const signupValidation = require('./middlewares/signupValidation');
 
-module.exports = function(app, passport, auth) {
-    // User Routes
-    var users = require('../app/controllers/users');
-    app.get('/signin', users.signin);
-    app.get('/signup', users.signup);
-    app.get('/chooseavatars', users.checkAvatar);
-    app.get('/signout', users.signout);
 
-    //Setting up the users api
-    app.post('/api/auth/signup', validateUserFields, users.create);
-    app.post('/users/avatars', users.avatars);
+const routes = (app, passport, auth) => {
+  // User Routes
+  app.get('/signin', users.signin);
+  app.get('/signup', users.signup);
+  app.get('/chooseavatars', users.checkAvatar);
+  app.get('/signout', users.signout);
 
-    // Donation Routes
-    app.post('/donations', users.addDonation);
+  // Donation Routes
+  app.post('/donations', users.addDonation);
 
-    app.post('/users/session', passport.authenticate('local', {
-        failureRedirect: '/signin',
-        failureFlash: 'Invalid email or password.'
-    }), users.session);
+  app.post('/users/session', passport.authenticate('local', {
+    failureRedirect: '/signin',
+    failureFlash: 'Invalid email or password.'
+  }), users.session);
 
-    app.get('/users/me', users.me);
-    app.get('/users/:userId', users.show);
+  app.get('/users/me', users.me);
+  app.get('/users/:userId', users.show);
 
-    //Setting the facebook oauth routes
-    app.get('/auth/facebook', passport.authenticate('facebook', {
-        scope: ['email'],
-        failureRedirect: '/signin'
-    }), users.signin);
+  // Login route
+  app.post('/api/auth/login', loginValidation, users.login);
 
-    app.get('/auth/facebook/callback', passport.authenticate('facebook', {
-        failureRedirect: '/signin'
-    }), users.authCallback);
+  // Signup route
+  app.post('/api/auth/signup', signupValidation, users.create);
+  app.post('/users/avatars', users.avatars);
 
-    //Setting the github oauth routes
-    app.get('/auth/github', passport.authenticate('github', {
-        failureRedirect: '/signin'
-    }), users.signin);
+  // Setting the facebook oauth routes
+  app.get('/auth/facebook', passport.authenticate('facebook', {
+    scope: ['email'],
+    failureRedirect: '/signin'
+  }), users.signin);
 
-    app.get('/auth/github/callback', passport.authenticate('github', {
-        failureRedirect: '/signin'
-    }), users.authCallback);
+  app.get('/auth/facebook/callback', passport.authenticate('facebook', {
+    failureRedirect: '/signin'
+  }), users.authCallback);
 
-    //Setting the twitter oauth routes
-    app.get('/auth/twitter', passport.authenticate('twitter', {
-        failureRedirect: '/signin'
-    }), users.signin);
+  // Setting the github oauth routes
+  app.get('/auth/github', passport.authenticate('github', {
+    failureRedirect: '/signin'
+  }), users.signin);
 
-    app.get('/auth/twitter/callback', passport.authenticate('twitter', {
-        failureRedirect: '/signin'
-    }), users.authCallback);
+  app.get('/auth/github/callback', passport.authenticate('github', {
+    failureRedirect: '/signin'
+  }), users.authCallback);
 
-    //Setting the google oauth routes
-    app.get('/auth/google', passport.authenticate('google', {
-        failureRedirect: '/signin',
-        scope: [
-            'https://www.googleapis.com/auth/userinfo.profile',
-            'https://www.googleapis.com/auth/userinfo.email'
-        ]
-    }), users.signin);
+  // Setting the twitter oauth routes
+  app.get('/auth/twitter', passport.authenticate('twitter', {
+    failureRedirect: '/signin'
+  }), users.signin);
 
-    app.get('/auth/google/callback', passport.authenticate('google', {
-        failureRedirect: '/signin'
-    }), users.authCallback);
+  app.get('/auth/twitter/callback', passport.authenticate('twitter', {
+    failureRedirect: '/signin'
+  }), users.authCallback);
 
-    //Finish with setting up the userId param
-    app.param('userId', users.user);
+  // Setting the google oauth routes
+  app.get('/auth/google', passport.authenticate('google', {
+    failureRedirect: '/signin',
+    scope: [
+      'https://www.googleapis.com/auth/userinfo.profile',
+      'https://www.googleapis.com/auth/userinfo.email'
+    ]
+  }), users.signin);
 
-    // Answer Routes
-    var answers = require('../app/controllers/answers');
-    app.get('/answers', answers.all);
-    app.get('/answers/:answerId', answers.show);
-    // Finish with setting up the answerId param
-    app.param('answerId', answers.answer);
+  app.get('/auth/google/callback', passport.authenticate('google', {
+    failureRedirect: '/signin'
+  }), users.authCallback);
 
-    // Question Routes
-    var questions = require('../app/controllers/questions');
-    app.get('/questions', questions.all);
-    app.get('/questions/:questionId', questions.show);
-    // Finish with setting up the questionId param
-    app.param('questionId', questions.question);
+  // Finish with setting up the userId param
+  app.param('userId', users.user);
 
-    // Avatar Routes
-    var avatars = require('../app/controllers/avatars');
-    app.get('/avatars', avatars.allJSON);
+  // Answer Routes
+  app.get('/answers', answers.all);
+  app.get('/answers/:answerId', answers.show);
+  // Finish with setting up the answerId param
+  app.param('answerId', answers.answer);
 
-    //Home route
-    var index = require('../app/controllers/index');
-    app.get('/play', index.play);
-    app.get('/', index.render);
+  // Question Routes
+  app.get('/questions', questions.all);
+  app.get('/questions/:questionId', questions.show);
+  // Finish with setting up the questionId param
+  app.param('questionId', questions.question);
 
+  // Avatar Routes
+  app.get('/avatars', avatars.allJSON);
+
+  // Home route
+  app.get('/play', index.play);
+  app.get('/', index.render);
 };
+
+module.exports = routes;
