@@ -1,7 +1,4 @@
-a{
-  color: #782149;
-}
-p, span, div, button, {
+.auth-form-style a, p, span, div, button, li {
   font-family: 'Ubuntu', sans-serif;
 }
 .navbar {
@@ -75,8 +72,11 @@ p, span, div, button, {
   color: white;
 }
 
-a:hover{
+.auth-form-style a:hover{
   color: rgb(216, 67, 44);
+}
+.auth-form-style a{
+  color: #782149;
 }
 .auth-form-style{
   padding: 15px;
