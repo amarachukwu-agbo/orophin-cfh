@@ -13,7 +13,8 @@
     "npm": "3.10.x"
   },
   "scripts": {
-    "start": "gulp",
+    "bower": "gulp bower",
+    "start": "npm run bower && gulp",
     "test": "gulp test",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov  | coveralls",
     "test:client": "karma start"
@@ -56,13 +57,14 @@
     "view-helpers": "~0.1.3"
   },
   "devDependencies": {
-    "coveralls": "^3.0.0",
     "angular": "^1.6.6",
     "angular-mocks": "^1.6.6",
     "angular-ui-router": "^0.4.3",
     "babel-cli": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-register": "^6.26.0",
+    "coveralls": "^3.0.0",
+    "del": "^3.0.0",
     "eslint": "^4.9.0",
     "eslint-config-airbnb-base": "^12.0.2",
     "eslint-plugin-import": "^2.7.0",
