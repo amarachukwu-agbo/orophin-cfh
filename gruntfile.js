@@ -64,7 +64,7 @@ module.exports = function(grunt) {
             options: {
                 reporter: 'spec'
             },
-            src: ['test/**/*.js']
+            src: ['test/**/*.js', '!test/article/model.js']
         },
         sass: {
             dist: {
