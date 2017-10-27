@@ -1,4 +1,4 @@
-<div ng-controller="IndexController">
+<div ng-show="showAuthPage()" ng-controller="IndexController">
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <a class="navbar-brand" href="#!" target="_self">
       <img src="img/logo.png" height="50" class="d-inline-block align-top">
@@ -27,7 +27,7 @@
       <div class="col-md-6 offset-md-3">
         <form class="z-depth-4 auth-form-style" ng-submit="signUp()" method="post">
           <h2 class="form-header">Sign Up</h2>
-          <div class="alert error-alert" class='show-error'>
+          <div class='sign-error'>
             {{ errorMessage }}
           </div>
           <div class="md-form">
@@ -60,9 +60,7 @@
               <a href="signin">Signin</a>
             </p>
           </div>
-          
-          
-        
+
           <div class="oauth-auth">
             <p>or Signup with</p>
             <a href="/auth/twitter" class="btn btn-social-icon btn-twitter">

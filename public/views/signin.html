@@ -1,4 +1,5 @@
-<div ng-controller="IndexController">
+
+<div ng-show="showAuthPage()" ng-controller="IndexController">
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <a class="navbar-brand" href="#!" target="_self">
       <img src="img/logo.png" height="50" class="d-inline-block align-top">
@@ -17,16 +18,16 @@
             </a>
           </li>
         </ul>
+
       </div>
     </div>
   </nav>
-<!-- Landing Start -->
 <div class="container">
   <div class="row">
     <div class="col-md-6 offset-md-3">
       <form class="z-depth-4 auth-form-style" ng-submit="login()" method="post">
         <h2 class="form-header">Sign In</h2>
-        <div class="sign-error" ng-show="showError() === 'invalid'">
+        <div class="sign-error">
           {{ errorMessage }}
         </div>
         <div class="md-form" id="form-color-focus">
