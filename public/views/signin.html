@@ -1,71 +1,68 @@
-<div id="main-bod" ng-show="showAuthPage()" ng-controller="IndexController">
-  <!-- Fixed Logo & Menu Bar Start -->
-  <div id="top-part">
-    <div class="wpb-top-bar">
-      <div class="mod-contain" id="navver">
-        <div class="row">
-          <!-- Logo -->
-          <div class="wpb-logo-container">
-            <div id="landing-logo"> 
-              <span id="first-word">Cards</span>
-              <span id="second-word"> for</span> 
-              <span id="third-word">Humanity</span> 
-            </div> 
-            <div class="col-md-9 wpb-menu-container">
-              <ul class="wpb-main-menu">
-                <li><a href="/">Home</a></li>
-              </ul>
-            </div>
-          </div>      
-        </div>
-      </div>
-    </div>
-  </div>
-<!-- Fixed Logo & Menu Bar End -->
 
-<!-- Landing Start -->
-<div class="wpb-teaser parallax-background" id="homer">
-  <div class="background-opacity"></div> 
-  <div class="modified-container">
-    <div class="row" id="main-text"> 
-    <!-- Teaser Text Start -->
-    <div id="landing-logo">
-      <h2 id="slogan">Sign in with:</h2>
-      <div id="login-buttons">
-        <a href="/auth/facebook"><img class="login-item" src="/img/icons/facebook.png"></a>
-        <a href="/auth/github"><img class="login-item" src="/img/icons/github.png"></a>
-        <a href="/auth/twitter"><img class="login-item" src="/img/icons/twitter.png"></a>
-        <a href="/auth/google"><img class="login-item" src="/img/icons/google.png"></a>
-      </div>
-      <p id="create">Or log in below:</p>
+<div ng-show="showAuthPage()" ng-controller="IndexController">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <a class="navbar-brand" href="#!" target="_self">
+      <img src="img/logo.png" height="50" class="d-inline-block align-top">
+    </a>
+    <div class="nav justify-content-end ml-auto">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav snip">
+          <li class="nav-item active">
+            <a class="nav-link" href="signup">Sign Up
+              <span class="sr-only">
+                (current)</span>
+            </a>
+          </li>
+        </ul>
 
-      <div class="sign-body">
-        <div class="more-sign">
-          <div class="alert error-alert" style="color: white;">
-            {{ errorMessage }}
-          </div>
-          <form class="signup form-horizontal" ng-submit="login()">
-            <div class="control-group">
-              <label for="email" class="control-label"></label>
-              <div class="controls">
-                <input class="input-info" id="email" type="text" name="email" placeholder="Email" ng-model="data.email" required novalidate />
-              </div>
-            </div>
-            <div class="control-group">
-              <label for="password" class="control-label"></label>
-              <div class="controls">
-                <input class="input-info" id="password" type="password" name="password" placeholder="Password" ng-model="data.password" required novalidate />
-              </div>
-            </div>
-            <div class="form-actions top-margin">
-              <button id="sign-up-btn-other" type='submit'>Sign In</button>
-            </div>
-          </form>
-        </div>
       </div>
     </div>
-    </div>
+  </nav>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <form class="z-depth-4 auth-form-style" ng-submit="login()" method="post">
+        <h2 class="form-header">Sign In</h2>
+        <div class="sign-error">
+          {{ errorMessage }}
+        </div>
+        <div class="md-form" id="form-color-focus">
+          <i class="material-icons prefix">account_circle</i>
+          <input class="form-control " id="email" type="email" name="email" ng-model="data.email" required novalidate />
+          <label for="email">Email</label>
+        </div>
+        <div class="md-form">
+          <i class="material-icons prefix">lock</i>
+          <input class="form-control" id="password" type="password" name="password" ng-model="data.password" required novalidate />
+          <label for="password" class="">Password</label>
+        </div>
+        <div class="sign-btn-wrapper">
+          <button class="btn form-button" type='submit'>SignIn</button>
+          <p class="text-right">Don't have an account?
+            <a href="signup">Register</a>
+          </p>
+        </div>
+        <div class="oauth-auth">
+          <p>or Signin with</p>
+          <a href="/auth/twitter" class="btn btn-social-icon btn-twitter">
+            <span class="fa fa-twitter"></span>
+          </a>
+          <a href="/auth/facebook" class="btn btn-social-icon btn-facebook">
+            <span class="fa fa-facebook"></span>
+          </a>
+          <a href="/auth/github" class="btn btn-social-icon btn-github">
+            <span class="fa fa-github"></span>
+          </a>
+          <a href="/auth/google" class="btn btn-social-icon btn-google">
+            <span class="fa fa-google"></span>
+          </a>
+        </div>
+      </form>
     </div>
   </div>
 </div>
-
+</div>
