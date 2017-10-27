@@ -162,3 +162,25 @@ footer{
   right: 0;
   left: 0;
 }
+.avatar-list{
+  padding-left: 5px;
+  list-style-type: none;
+  display: inline-flex;
+  flex-wrap: inherit;
+  overflow: scroll;
+}
+.avatar-list li{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.avatar-list img{
+  max-width: 50px;
+  max-height: 50px;
+  
+}
+#contain-avatars{
+  overflow-x: scroll;
+}
+
