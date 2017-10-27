@@ -15,7 +15,7 @@
   "scripts": {
     "bower": "gulp bower",
     "start": "npm run bower && gulp",
-    "test": "cross-env NODE_ENV=test gulp test",
+    "test": "cross-env NODE_ENV=test gulp test --timeout 15000",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov  | coveralls",
     "test:client": "karma start",
     "heroku-postbuild": "npm run bower"
