@@ -24,19 +24,19 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6 offset-md-3">
-      <form class="z-depth-4 auth-form-style" action="/users/session" method="post">
+      <form class="z-depth-4 auth-form-style" ng-submit="login()" method="post">
         <h2 class="form-header">Sign In</h2>
         <div class="sign-error" ng-show="showError() === 'invalid'">
-          Please check your username/password and try again.
+          {{ errorMessage }}
         </div>
         <div class="md-form" id="form-color-focus">
           <i class="material-icons prefix">account_circle</i>
-          <input class="form-control " id="email" type="email" name="email" required novalidate />
+          <input class="form-control " id="email" type="email" name="email" ng-model="data.email" required novalidate />
           <label for="email">Email</label>
         </div>
         <div class="md-form">
           <i class="material-icons prefix">lock</i>
-          <input class="form-control" id="password" type="password" name="password" required novalidate />
+          <input class="form-control" id="password" type="password" name="password" ng-model="data.password" required novalidate />
           <label for="password" class="">Password</label>
         </div>
         <div class="sign-btn-wrapper">
