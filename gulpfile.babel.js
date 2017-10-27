@@ -82,7 +82,7 @@ gulp.task('test', () => gulp.src(
     debugDirectory: 'debug'
   }))
   .pipe(plugins.mocha({
-    timeout: 15000
+    timeout: 150000
   }))
   .pipe(plugins.coverage.gather())
   .pipe(plugins.coverage.format())
