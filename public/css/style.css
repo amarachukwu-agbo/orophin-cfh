@@ -181,6 +181,10 @@ body, html {
   cursor: pointer;
 }
 
+.signout {
+  cursor: pointer;
+}
+
 #charity{
   background-color: #782149;
   padding: 5%;

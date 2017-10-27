@@ -1,4 +1,4 @@
-<div landing>
+<div landing ng-controller="IndexController">
     <!-- Fixed Logo & Menu Bar Start -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
       <a class="navbar-brand" ng-href="/">
@@ -26,8 +26,8 @@
             <li class="nav-item active">
               <a class="nav-link" href="#!/signin" ng-show="showOptions">Sign In</a>
             </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="/signout" ng-hide="showOptions">Sign Out</a>
+            <li class="nav-item active signout">
+              <a class="nav-link" ng-click="signOut()" ng-hide="showOptions">Sign Out</a>
             </li>
           </ul>
         </div>
