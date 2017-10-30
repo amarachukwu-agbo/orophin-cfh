@@ -20,7 +20,7 @@
         
     </div>
 
-    <div ng-repeat="answer in game.table" class="d-flex">
+    <div ng-repeat="answer in game.table" class="d-flex" style="margin-left:1.5em">
       <div class="card smallest card-answer" 
         ng-style="pointerCursorStyle()" id='table' 
         ng-click="pickWinning(answer)" 
@@ -50,6 +50,11 @@
       <li>*Want to adorn your avatar with a glorious crown? Donate to charity after the game!</li>
     </ol>
   </div>
+  <div id="charity-widget-container">
+      <!-- This is real -->
+    <a href="http://www.crowdrise.com" id="crowdriseStaticLink-fundraiser-121142" title="Fundraising Websites on Crowdrise">Fundraising Websites - Crowdrise</a>
+    <script type="text/javascript" src="https://www.crowdrise.com/widgets/donate/fundraiser/121142/?callback=userDonationCb"></script>
+  </div>
 </div>
 <div id="game-end-container" class="bg-transparent" ng-show="game.state === 'game ended' || game.state ==='game dissolved'">
   <div id="inner-info-exit">
@@ -71,24 +76,24 @@
       </div>
   </div>
 
-  <div id="charity-widget-container" >
+  <div id="charity-widget-container">
       <!-- This is real -->
-      <a href="http://www.crowdrise.com" id="crowdriseStaticLink-fundraiser-121142" title="Fundraising Websites on Crowdrise">Fundraising Websites - Crowdrise</a>
-      <script type="text/javascript" src="https://www.crowdrise.com/widgets/donate/fundraiser/121142/?callback=userDonationCb"></script>
-      <!-- This is for testing -->
-      <!-- <a href="http://www.crowdrise.com" id="crowdriseStaticLink-project-36715" title="Fundraising Websites on Crowdrise">Fundraising Websites - Crowdrise</a> -->
-      <!-- <script type="text/javascript" src="https://apisandbox.crowdrise.com/widgets/donate/project/36715/?callback=userDonationCb"></script> -->
+    <a href="http://www.crowdrise.com" id="crowdriseStaticLink-fundraiser-121142" title="Fundraising Websites on Crowdrise">Fundraising Websites - Crowdrise</a>
+    <script type="text/javascript" src="https://www.crowdrise.com/widgets/donate/fundraiser/121142/?callback=userDonationCb"></script>
   </div>
 </div>
-<div id="czar-blank-container" class="bg-transparent" ng-show="isCzar() && game.table.length===0 && game.state !== 'game dissolved' && game.state !== 'awaiting players'">
-  <div id="czar-blank-inner">
+<div class="text-white justify-content-center flex-column bg-transparent align-items center" 
+  ng-class="d-flex:isCzar() && game.table.length===0 && game.state !== 'game dissolved' && game.state !== 'awaiting players'" 
+  ng-show="isCzar() && game.table.length===0 && game.state !== 'game dissolved' && game.state !== 'awaiting players'">
+  <div id="czar-blank-inner" class="h1 text-center">
     You are the Card Czar. <br>
-    <span id="smaller-text">Players are choosing their answers. Prepare to select a winner.</span>
+    <span id="smaller-text" class="lead">Players are choosing their answers. Prepare to select a winner.</span>
   </div>
-  <div id='charity-fact-container'>
+  <div id='charity-fact-container' 
+  class="d-flex flex-column justify-content-center align-items-center ">
     <div id='charity-fact-tagline'>Did you know?</div>
 
-    <div id='charity-fact'>
+    <div id='charity-fact' class="col-xs-10 col-sm-10 col-md-7 col-lg-6 text-center">
        {{ makeAWishFact }}
     </div>
 

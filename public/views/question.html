@@ -5,18 +5,21 @@
     <div id="notifications" ng-if="game.notification" ng-animate="{enter:'animated fadeInLeft', leave:'animated fadeOut'}">{{game.notification}}</div>
 
     <div id="startGame" ng-show="game.state === 'awaiting players'">
-      <div id="finding-players">Finding Players</div>
-      <div id="player-count-container">
-        <div id="player-count">{{game.players.length}} / 6 </div>
-        <div id="the-word-players"> Players </div>
-      </div>
-      <div id="loading-container">
-        <div id="loading-gif"><img ng-src="../img/loader.gif"/></div>
-      </div>
-      <div id="start-game-container" ng-click="startGame()" ng-show="(game.playerIndex === 0 || game.joinOverride) && game.players.length >= game.playerMinLimit">
-        <div id='start-game-button' class="btn">
-          Start Game</br>with {{game.players.length}} players
+      <div id="finding-players" class="d-flex text-left align-items-center" style="margin:0">Finding Players
+        <div id="loading-container" class="d-flex align-items-center justify-content-center col-xs-4 col-sm-4 col-md-2 col-lg-2">
+          <div id="loading-gif" style="margin:0"><img ng-src="../img/loader.gif"/></div>
         </div>
+      </div>
+      <div class="d-flex align-items-center">
+        <div id="player-count-container">
+            <div id="player-count" class="text-left">{{game.players.length}} / 6 </div>
+            <div id="the-word-players" class="text-left"> Players </div>
+          </div>
+          <div id="start-game-container" ng-click="startGame()" ng-show="(game.playerIndex === 0 || game.joinOverride) && game.players.length >= game.playerMinLimit">
+            <div class="btn btn-color">
+              Start Game
+            </div>
+          </div>
       </div>
     </div>
     <!-- Game Over Stuff -->

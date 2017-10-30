@@ -47,6 +47,10 @@ div#charity-widget-container{
 #charity-widget-container{
   margin-top: 0 !important;
 }
+#crDonateWidget_cfhio_cards4humanity{
+  margin: 0 auto;
+}
+
 .cards-container{
   overflow: scroll;
 }
@@ -59,9 +63,7 @@ div#charity-widget-container{
   justify-content: flex-start;
   align-items: flex-start;
 }
-.card-wrapper{
-  //width: fit-content;
-}
+
 .cfh-logo{
   position: absolute;
   bottom: 10px;
@@ -78,5 +80,12 @@ div#charity-widget-container{
 @media(max-width: 991px){
   .card-answer{
     height: 300px !important;
+  }
+}
+@media (max-width: 520px){
+  #charity-widget-container {
+    display: block !important;
+    width: 100% !important;
+    margin-top: 20px
   }
 }

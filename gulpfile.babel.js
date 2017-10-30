@@ -73,9 +73,7 @@ gulp.task('clean', () => {
 
 gulp.task('test', () => gulp.src(
   [
-    './test/game/game.js',
-    './test/user/model.js',
-    './test/article/model.js'
+    './test/**/*.js'
   ],
   { read: false }
 )

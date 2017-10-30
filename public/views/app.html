@@ -1,6 +1,6 @@
 </script>
 <div id="app-container" ng-controller="GameController">
-  <nav class="navbar game-screen-navbar">
+  <nav class="game-screen-navbar d-flex ">
     <a class="navbar-brand" href="#index.html" target="_self">
       <img src="img/logo/logo.png" height="50" class="d-inline-block align-top">
     </a>
@@ -21,7 +21,7 @@
       </li>
     </ul>
   </nav>
-  <div class="game-screen-body">
+  <div class="game-screen-body d-flex flex-column flex-lg-row">
      <!-- MOBILE PLAYER STARTS-->
      <div class="card mobile-player" 
      style="background-color:{{colors[game.playerIndex]}}"

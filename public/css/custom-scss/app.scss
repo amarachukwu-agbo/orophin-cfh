@@ -1,7 +1,7 @@
 body{
   padding:0;
   margin: 0;
-  background-image: url('../img/background.jpg') !important;
+  background-image: url('../img/background-gs.jpg') !important;
   background-size: auto !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
@@ -13,7 +13,7 @@ body{
 #gameplay-container{
   margin: 20px 0 0 0!important;
   height: 90vh;
-  padding: 0;
+  padding: 0 1em;
 }
 #social-bar-container {
   width: 100% !important;
@@ -75,13 +75,12 @@ body{
   min-height: 300px !important;
   margin-top: 25px;
   border-radius: 2px;
+  margin-bottom: 50px;
 }
 .no-padding{
   padding: 0 !important;
 }
-.transparent{
-  background-color: transparent !important;
-}
+
 @media(max-width: 991px){
   .right-container{
     display: none;

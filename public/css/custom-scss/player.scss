@@ -21,6 +21,7 @@
   align-items: center;
   justify-content: space-around;
   height: 100% !important;
+  padding: 0 .5em;
 }
 #player-container-inner{
   display: flex;
@@ -29,6 +30,7 @@
   justify-content: space-between;
   align-items: center;
   height: inherit;
+  max-width: unset !important;
 }
 #czar-container{
   left: 0;
@@ -41,8 +43,13 @@
   margin-left: .2em;
   min-height: 100%;
 }
-#play-score > h2 {
-  font-size: .5em !important;
+#play-score > h2, .ng-binding{
+  margin: 0 !important;
+}
+#player-name h4{
+  margin: 0;
+  margin-left: 20px;
+  font-size: 1em;
 }
 .mobile-player{
   display: none !important;
@@ -51,7 +58,7 @@
   .mobile-player{
     display: block !important;
     max-height: fit-content !important ;
-    padding: .7em !important;
+    padding: .5em !important;
     font-size: 2em !important;
   
     &-czar{

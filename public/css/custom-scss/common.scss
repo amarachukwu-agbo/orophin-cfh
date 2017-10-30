@@ -387,15 +387,6 @@ html{
 body{
     font-family: $main-font;
     background: transparent;
-    margin: 10px;
-
-    @include tablet-portrait-only{
-        margin: 5px;
-    }
-
-    @include mobile-only{
-        margin: 1px;
-    }
 }
 
 .navbar .nav>li>a.brand {
@@ -622,7 +613,6 @@ body{
                         #player-name{
 
                             h4{
-                                font-family: 'Lobster', cursive;
                                 margin-bottom: 0px;
                             }
                             h4{
@@ -855,8 +845,9 @@ body{
                                 width: 100%;
                                 overflow: hidden;
                                 height: 100%;
-                                position: absolute;
-                                right: 1%;
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: space-around;
 
                                 #finding-players {
                                     font-size: 33px;
@@ -877,14 +868,14 @@ body{
 
                                 #player-count-container{
                                     #player-count{
-                                        font-size: 33px;
+                                        font-size: 25px;
 
                                         @include mobile-only{
-                                            font-size: 21px;
+                                            font-size: 15px;
                                         }
                                     }
                                     #the-word-players{
-                                        font-size: 17px;
+                                        font-size: 15px;
                                     }
                                 }
 
