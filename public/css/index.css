@@ -1,13 +1,436 @@
+.snip li {
+  display: block;
+  list-style: outside none none;
+  margin: 0.5em 0.6em;
+  position: relative; }
+
+.snip li a {
+  color: #fff;
+  text-decoration: none; }
+
+.snip li:before,
+.snip li:after {
+  -webkit-transition: all 0.35s ease;
+  transition: all 0.35s ease;
+  height: 2px;
+  width: 35%;
+  background-color: #7BA342;
+  position: absolute;
+  content: '';
+  opacity: 0; }
+
+.snip li:before {
+  top: 0;
+  left: 0; }
+
+.snip li:after {
+  bottom: 0;
+  right: 0; }
+
+.snip li:hover:before,
+.snip li.hover:before,
+.snip li:hover:after,
+.snip li.hover:after {
+  opacity: 1; }
+
+.snip li:hover:before,
+.snip li.hover:before {
+  left: 65%; }
+
+.snip li:hover:after,
+.snip li.hover:after {
+  right: 65%; }
+
+.navbar {
+  padding-top: 2%;
+  padding-right: 6%;
+  padding-left: 6%;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 0 !important;
+  min-height: -webkit-fit-content;
+  min-height: -moz-fit-content;
+  min-height: fit-content; }
+
+.navbar .navbar-brand {
+  -ms-flex-item-align: unset !important;
+  align-self: unset !important; }
+
+.navbar-nav li {
+  font-family: 'Bree Serif', serif;
+  text-align: right;
+  font-size: 16px;
+  color: white; }
+
+.navbar-toggler {
+  color: white; }
+
+.quit-btn {
+  cursor: pointer;
+  color: red; }
+
+.game-screen-navbar {
+  width: 100%;
+  height: 10vh;
+  margin: 0; }
+  .game-screen-navbar::after {
+    content: unset !important; }
+  .game-screen-navbar::before {
+    content: unset; }
+  .game-screen-navbar .navbar-nav {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-orient: horizontal !important;
+    -webkit-box-direction: normal !important;
+    -ms-flex-direction: row !important;
+    flex-direction: row !important;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end; }
+    .game-screen-navbar .navbar-nav .nav-item {
+      padding: 0 1em; }
+
+@media (max-width: 370px) {
+  .game-screen-navbar {
+    -webkit-box-pack: center !important;
+    -ms-flex-pack: center !important;
+    justify-content: center !important; }
+    .game-screen-navbar .navbar-nav {
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center; } }
+
+.bg-color {
+  background-color: #782149 !important; }
+
+.bg-transparent {
+  background-color: transparent; }
+
+.text-color-primary {
+  color: #782149 !important; }
+
+.btn-color {
+  background-color: #7BA342 !important; }
+
+.inner-timer-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 100%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+  -ms-flex-direction: column-reverse;
+  flex-direction: column-reverse;
+  text-align: center; }
+  .inner-timer-container > span {
+    font-weight: 400;
+    font-size: 1.5em; }
+
+#time {
+  font-size: 100px;
+  font-weight: bold; }
+
+.question-card {
+  padding: 1em !important;
+  color: white; }
+
+.start-game {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column; }
+
+#player-container {
+  padding: 0 !important;
+  overflow: hidden;
+  width: 95%;
+  margin: .2em auto !important;
+  max-height: 60px !important; }
+
+#avatar_ {
+  height: 50px !important;
+  width: 50px !important; }
+
+#img {
+  height: 100%;
+  width: 100%;
+  max-width: 100%; }
+
+#above-czar-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+  height: 100% !important; }
+
+#player-container-inner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  bottom: 0px;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: inherit; }
+
+#czar-container {
+  left: 0;
+  right: 0; }
+
+.player-score-star-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  margin-left: .2em;
+  min-height: 100%; }
+
+#play-score > h2 {
+  font-size: .5em !important; }
+
+.mobile-player {
+  display: none !important; }
+
+@media (max-width: 991px) {
+  .mobile-player {
+    display: block !important;
+    max-height: -webkit-fit-content !important;
+    max-height: -moz-fit-content !important;
+    max-height: fit-content !important;
+    padding: .7em !important;
+    font-size: 2em !important; }
+    .mobile-player-czar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      text-align: center;
+      background: black;
+      opacity: 0.4;
+      color: white;
+      font-weight: bold; } }
+
+#social-bar-container {
+  top: 100px !important; }
+
+#lobby-how-to-play {
+  font-size: 30px !important; }
+
+#oh-el {
+  font-size: 20px !important; }
+
+.card-answer, .card-picked {
+  width: 300px;
+  min-width: 300px;
+  height: 400px !important;
+  padding: 1.5em !important;
+  max-height: 95% !important;
+  font-size: 1.6em !important; }
+
+.hand {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: inherit;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  height: 90% !important;
+  overflow-x: scroll;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  padding: 0 .5em;
+  width: -webkit-fit-content !important;
+  width: -moz-fit-content !important;
+  width: fit-content !important; }
+
+#cards-container,
+#info-container,
+#game-end-container,
+#czar-blank-container {
+  height: 90% !important; }
+
+#game-end-container {
+  margin-top: 20px; }
+
+.game-end-answer-text {
+  max-width: 300px;
+  margin: 20px auto; }
+
+div#charity-widget-container {
+  margin-top: 20px; }
+
+#charity-widget-container {
+  margin-top: 0 !important; }
+
+.cards-container {
+  overflow: scroll; }
+
+.greenr {
+  height: 100% !important; }
+
+.card-picked {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start; }
+
+.cfh-logo {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: .8em;
+  text-transform: capitalize;
+  font-style: oblique;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.52); }
+  .cfh-logo img {
+    width: 40px; }
+
+@media (max-width: 991px) {
+  .card-answer {
+    height: 300px !important; } }
+
+body {
+  padding: 0;
+  margin: 0;
+  background-image: url("../img/background.jpg") !important;
+  background-size: auto !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important; }
+
+#app-container {
+  max-width: unset !important; }
+
+#gameplay-container {
+  margin: 20px 0 0 0 !important;
+  height: 90vh;
+  padding: 0; }
+
+#social-bar-container {
+  width: 100% !important;
+  height: 100% !important;
+  position: absolute !important;
+  right: 0 !important;
+  top: 0px !important; }
+
+.game-screen-body {
+  height: 90vh;
+  width: 100%; }
+
+.gameplay-inner-left {
+  margin: 0;
+  height: 100%; }
+  .gameplay-inner-left-top {
+    height: 300px; }
+  .gameplay-inner-left-bottom {
+    height: 400px; }
+
+#timer-container {
+  padding: 0; }
+
+.question-container {
+  height: inherit; }
+
+.right-container, .left-container {
+  height: 100%;
+  padding: 0;
+  margin: 0; }
+
+.right-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  padding: .2em !important; }
+  .right-container-bottom {
+    width: 100%;
+    height: 50%; }
+  .right-container-top {
+    width: 100%;
+    height: 50%;
+    position: relative;
+    overflow: scroll; }
+
+.question {
+  height: 35%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 0 !important; }
+
+.answers {
+  min-height: 300px !important;
+  margin-top: 25px;
+  border-radius: 2px; }
+
+.no-padding {
+  padding: 0 !important; }
+
+.transparent {
+  background-color: transparent !important; }
+
+@media (max-width: 991px) {
+  .right-container {
+    display: none; } }
+
 .card {
-  position: relative;
-  display: inline-block;
-  box-sizing: border-box;
-  width: 17.5%;
-  height: 215px;
   padding: 1%;
   margin: 1%;
-  background-color: #fff;
-  border-radius: 8px;
   color: #252525;
   font-family: Arial;
   font-size: 20px;
@@ -65,20 +488,6 @@ html, body, .main-container, .cont, #first-section, #inner-container {
   height: 100%; }
 
 html {
-  /* IE10 Consumer Preview */
-  background-image: -ms-linear-gradient(top left, #0B394E 0%, #ABCE8D 100%);
-  /* Mozilla Firefox */
-  background-image: -moz-linear-gradient(top left, #0B394E 0%, #ABCE8D 100%);
-  /* Opera */
-  background-image: -o-linear-gradient(top left, #0B394E 0%, #ABCE8D 100%);
-  /* Webkit (Safari/Chrome 10) */
-  background-image: -webkit-gradient(linear, left top, right bottom, color-stop(0, #0B394E), color-stop(1, #ABCE8D));
-  /* Webkit (Chrome 11+) */
-  background-image: -webkit-linear-gradient(top left, #0B394E 0%, #ABCE8D 100%);
-  /* W3C Markup, IE10 Release Preview */
-  background-image: linear-gradient(to bottom right, #0B394E 0%, #ABCE8D 100%);
-  background-attachment: fixed;
-  background-repeat: no-repeat;
   position: relative; }
   @media (max-width: 520px) {
     html {
@@ -112,8 +521,6 @@ body {
     position: relative; }
     #main-container #app-container #menu-container {
       width: 100%;
-      -webkit-border-radius: 8px;
-      -moz-border-radius: 8px;
       border-radius: 8px;
       background: #252525;
       margin-bottom: 10px;
@@ -205,10 +612,7 @@ body {
         padding-bottom: 4%;
         min-height: 85px;
         background: #7CE4E8;
-        margin: 0 0 6% 8%;
-        -webkit-border-radius: 8px;
-        -moz-border-radius: 8px;
-        border-radius: 8px; }
+        margin: 0 0 6% 8%; }
         @media (max-width: 520px) {
           #main-container #app-container #social-bar-container #player-container {
             min-height: 0;
@@ -225,8 +629,6 @@ body {
             #main-container #app-container #social-bar-container #player-container #above-czar-container {
               height: 100%; } }
           #main-container #app-container #social-bar-container #player-container #above-czar-container #avatar_ {
-            height: 100%;
-            width: 38%;
             float: left;
             position: relative;
             z-index: 999; }
@@ -245,31 +647,21 @@ body {
                   max-width: 80%;
                   bottom: 31px;
                   left: -3px; } }
-            #main-container #app-container #social-bar-container #player-container #above-czar-container #avatar_ img {
-              width: 100%;
-              height: 140%;
-              float: left;
-              -webkit-border-radius: 8px;
-              -moz-border-radius: 8px;
-              border-radius: 8px;
-              min-width: 40px;
-              min-height: 40px; }
-              @media only screen and (min-width: 521px) and (max-width: 768px) {
-                #main-container #app-container #social-bar-container #player-container #above-czar-container #avatar_ img {
-                  width: 100%;
-                  height: 100%;
-                  margin-left: 3px; } }
-              @media (max-width: 520px) {
-                #main-container #app-container #social-bar-container #player-container #above-czar-container #avatar_ img {
-                  height: 69%;
-                  width: 100%;
-                  min-height: 0;
-                  min-width: 0;
-                  margin: 0; } }
+            @media only screen and (min-width: 521px) and (max-width: 768px) {
+              #main-container #app-container #social-bar-container #player-container #above-czar-container #avatar_ img {
+                width: 100%;
+                height: 100%;
+                margin-left: 3px; } }
+            @media (max-width: 520px) {
+              #main-container #app-container #social-bar-container #player-container #above-czar-container #avatar_ img {
+                height: 69%;
+                width: 100%;
+                min-height: 0;
+                min-width: 0;
+                margin: 0; } }
           #main-container #app-container #social-bar-container #player-container #above-czar-container #player-container-inner {
             float: left;
             position: relative;
-            bottom: 8px;
             left: 2px;
             max-width: 62%;
             overflow: hidden; }
@@ -328,12 +720,6 @@ body {
           bottom: 0;
           text-align: center;
           width: 100%;
-          -webkit-border-bottom-right-radius: 8px;
-          -webkit-border-bottom-left-radius: 8px;
-          -moz-border-radius-bottomright: 8px;
-          -moz-border-radius-bottomleft: 8px;
-          border-bottom-right-radius: 8px;
-          border-bottom-left-radius: 8px;
           background: black;
           opacity: 0.4; }
           @media (max-width: 520px) {
@@ -360,13 +746,13 @@ body {
         max-height: 220px; }
         @media (max-width: 520px) {
           #main-container #app-container #gameplay-container #upper-gameplay-container {
-            min-height: 140px;
-            max-height: 140px; } }
+            min-height: 170px;
+            max-height: 170px; } }
         @media only screen and (min-width: 521px) and (max-width: 768px) {
           #main-container #app-container #gameplay-container #upper-gameplay-container {
             height: 16%;
-            min-height: 180px;
-            max-height: 180px; } }
+            min-height: 230px;
+            max-height: 230px; } }
         #main-container #app-container #gameplay-container #upper-gameplay-container #menu-timeremaining-container {
           float: left;
           width: 19%;
@@ -384,10 +770,7 @@ body {
             text-align: center;
             position: relative;
             font-weight: bold;
-            -webkit-border-radius: 8px;
-            -moz-border-radius: 8px;
-            border-radius: 8px;
-            -moz-box-shadow: inset 0px 1px 0px 0px #ffffff;
+            border-radius: 4px;
             -webkit-box-shadow: inset 0px 1px 0px 0px #ffffff;
             box-shadow: inset 0px 1px 0px 0px #ffffff;
             filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fcfcfc', endColorstr='#f0f0f0');
@@ -398,9 +781,7 @@ body {
             height: 20%;
             margin-bottom: 16px;
             line-height: 20%;
-            -webkit-border-radius: 8px;
-            -moz-border-radius: 8px;
-            border-radius: 8px; }
+            border-radius: 4px; }
             #main-container #app-container #gameplay-container #upper-gameplay-container #menu-timeremaining-container #menu-container #menu-button {
               position: absolute;
               top: 50%;
@@ -413,10 +794,7 @@ body {
               text-align: center;
               position: relative;
               font-weight: bold;
-              -webkit-border-radius: 8px;
-              -moz-border-radius: 8px;
-              border-radius: 8px;
-              -moz-box-shadow: inset 0px 1px 0px 0px #ffffff;
+              border-radius: 4px;
               -webkit-box-shadow: inset 0px 1px 0px 0px #ffffff;
               box-shadow: inset 0px 1px 0px 0px #ffffff;
               filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fcfcfc', endColorstr='#f0f0f0');
@@ -516,18 +894,17 @@ body {
                 #main-container #app-container #gameplay-container #upper-gameplay-container #question-container-outer #question-container-inner .card #startGame #start-game-container {
                   color: #333; }
                   #main-container #app-container #gameplay-container #upper-gameplay-container #question-container-outer #question-container-inner .card #startGame #start-game-container #start-game-button {
-                    border-radius: 8px;
-                    -moz-border-radius: 5px;
-                    -webkit-border-radius: 5px;
                     font-size: 20px;
                     font-size: 1.25rem;
                     font-weight: 400;
                     color: white;
-                    background: #1F959C;
+                    background: #607f33;
                     padding: 0.65em 20px;
                     margin: 10px;
                     width: 65%;
-                    cursor: pointer; }
+                    cursor: pointer;
+                    -webkit-transition: background-color .3s ease-in;
+                    transition: background-color .3s ease-in; }
                     @media only screen and (min-width: 521px) and (max-width: 768px) {
                       #main-container #app-container #gameplay-container #upper-gameplay-container #question-container-outer #question-container-inner .card #startGame #start-game-container #start-game-button {
                         padding: 0.65em 2px;
@@ -537,7 +914,7 @@ body {
                         padding: 0.65em 1px;
                         font-size: 1rem; } }
                   #main-container #app-container #gameplay-container #upper-gameplay-container #question-container-outer #question-container-inner .card #startGame #start-game-container #start-game-button:hover {
-                    background: #41C2CA; }
+                    background: #6d913b; }
               #main-container #app-container #gameplay-container #upper-gameplay-container #question-container-outer #question-container-inner .card #game-end-info {
                 text-align: center;
                 font-size: 16px; }
@@ -554,9 +931,7 @@ body {
         width: 100%;
         background: #252525;
         color: white;
-        -webkit-border-radius: 8px;
-        -moz-border-radius: 8px;
-        border-radius: 8px;
+        border-radius: 4px;
         text-align: center;
         padding: 15px;
         height: 50%;
@@ -590,14 +965,12 @@ body {
               margin-bottom: 5px; }
             @media (max-width: 520px) {
               #main-container #app-container #gameplay-container #info-container #inner-info ol {
-                font-size: 13px;
+                font-size: 11px;
                 padding: 0px 10px 10px 10px; } }
       #main-container #app-container #gameplay-container #game-end-container {
         width: 100%;
         background: #252525;
-        -webkit-border-radius: 8px;
-        -moz-border-radius: 8px;
-        border-radius: 8px;
+        border-radius: 4px;
         text-align: center;
         overflow: hidden;
         height: 50%;
@@ -641,17 +1014,9 @@ body {
               float: left;
               filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fcfcfc', endColorstr='#f0f0f0');
               background-color: white;
-              -webkit-border-top-left-radius: 8px;
-              -moz-border-radius-topleft: 8px;
               border-top-left-radius: 8px;
-              -webkit-border-top-right-radius: 8px;
-              -moz-border-radius-topright: 8px;
               border-top-right-radius: 8px;
-              -webkit-border-bottom-right-radius: 8px;
-              -moz-border-radius-bottomright: 8px;
               border-bottom-right-radius: 8px;
-              -webkit-border-bottom-left-radius: 8px;
-              -moz-border-radius-bottomleft: 8px;
               border-bottom-left-radius: 8px;
               text-indent: 0;
               display: inline-block;
@@ -674,7 +1039,6 @@ body {
               line-height: 155%;
               padding-top: 5%; }
               #main-container #app-container #gameplay-container #game-end-container #inner-info-exit #inner-text-container #join-new-game:hover {
-                background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f0f0f0), color-stop(1, #ededed));
                 background: -moz-linear-gradient(center top, #f0f0f0 5%, #ededed 100%);
                 filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f0f0f0', endColorstr='#ededed');
                 background-color: #f0f0f0;
@@ -683,17 +1047,9 @@ body {
               float: left;
               filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fcfcfc', endColorstr='#f0f0f0');
               background-color: white;
-              -webkit-border-top-left-radius: 8px;
-              -moz-border-radius-topleft: 8px;
               border-top-left-radius: 8px;
-              -webkit-border-top-right-radius: 8px;
-              -moz-border-radius-topright: 8px;
               border-top-right-radius: 8px;
-              -webkit-border-bottom-right-radius: 8px;
-              -moz-border-radius-bottomright: 8px;
               border-bottom-right-radius: 8px;
-              -webkit-border-bottom-left-radius: 8px;
-              -moz-border-radius-bottomleft: 8px;
               border-bottom-left-radius: 8px;
               text-indent: 0;
               display: inline-block;
@@ -716,7 +1072,6 @@ body {
               line-height: 155%;
               padding-top: 5%; }
               #main-container #app-container #gameplay-container #game-end-container #inner-info-exit #inner-text-container #exit-match:hover {
-                background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f0f0f0), color-stop(1, #ededed));
                 background: -moz-linear-gradient(center top, #f0f0f0 5%, #ededed 100%);
                 filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f0f0f0', endColorstr='#ededed');
                 background-color: #f0f0f0;
@@ -725,9 +1080,6 @@ body {
         color: white;
         width: 100%;
         background: #252525;
-        -webkit-border-radius: 8px;
-        -moz-border-radius: 8px;
-        border-radius: 8px;
         text-align: center;
         overflow: hidden;
         height: 50%;
@@ -749,9 +1101,7 @@ body {
           #main-container #app-container #gameplay-container #czar-blank-container #czar-blank-inner #smaller-text {
             font-size: 18px; }
         #main-container #app-container #gameplay-container #czar-blank-container #charity-fact-container {
-          -webkit-border-radius: 8px;
-          -moz-border-radius: 8px;
-          border-radius: 8px;
+          border-radius: 4px;
           background-color: #fff;
           color: black;
           position: absolute;
@@ -797,10 +1147,7 @@ body {
       #main-container #app-container #gameplay-container #cards-container {
         width: 100%;
         background: #252525;
-        margin-top: 11px;
-        -webkit-border-radius: 8px;
-        -moz-border-radius: 8px;
-        border-radius: 8px; }
+        margin-top: 11px; }
         @media (max-width: 520px) {
           #main-container #app-container #gameplay-container #cards-container {
             background: transparent;
@@ -813,8 +1160,6 @@ body {
           @media (max-width: 520px) {
             #main-container #app-container #gameplay-container #cards-container #cards {
               background: #252525;
-              -webkit-border-radius: 8px;
-              -moz-border-radius: 8px;
               border-radius: 8px;
               max-height: 245px; } }
 
@@ -828,10 +1173,7 @@ body {
 
 .crDonateWidget {
   -webkit-box-shadow: 0px 0px 0px 0px transparent !important;
-  -moz-box-shadow: 0px 0px 0px 0px transparent !important;
   box-shadow: 0px 0px 0px 0px transparent !important;
-  -webkit-border-radius: 8px !important;
-  -moz-border-radius: 8px !important;
   border-radius: 8px !important; }
 
 .crDonateWidgetOuter {
@@ -866,8 +1208,6 @@ body {
   width: 80% !important;
   margin-top: 8px !important;
   background: #f4781f !important;
-  -webkit-border-radius: 8px !important;
-  -moz-border-radius: 8px !important;
   border-radius: 8px !important;
   text-transform: none !important; }
   .gradientButton .donateNow {

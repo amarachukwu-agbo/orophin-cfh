@@ -129,18 +129,18 @@ background-image: linear-gradient(to bottom right, #0B394E 0%, #ABCE8D 100%);
 }
 
 @mixin br{
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    border-radius: 8px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
 }
 
 @mixin br-bottom {
-    -webkit-border-bottom-right-radius: 8px;
-    -webkit-border-bottom-left-radius: 8px;
-    -moz-border-radius-bottomright: 8px;
-    -moz-border-radius-bottomleft: 8px;
-    border-bottom-right-radius: 8px;
-    border-bottom-left-radius: 8px;
+    -webkit-border-bottom-right-radius: 4px;
+    -webkit-border-bottom-left-radius: 4px;
+    -moz-border-radius-bottomright: 4px;
+    -moz-border-radius-bottomleft: 4px;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
 }
 
 @mixin button {
@@ -292,19 +292,8 @@ background-image: linear-gradient(to bottom right, #0B394E 0%, #ABCE8D 100%);
 }
 
 .card {
-    position: relative;
-
-    display: inline-block;
-    box-sizing: border-box;
-    width: 17.5%;
-    height: 215px;
     padding: 1%;
     margin: 1%;
-
-    background-color: #fff;
-
-    border-radius: 8px;
-
     color: #252525;
     font-family: Arial;
     font-size: 20px;
@@ -387,16 +376,7 @@ html, body, .main-container, .cont, #first-section, #inner-container{
 }
 
 html{
-    // margin: 20px;
-    // margin-top: 5px;
-    // background: url(/img/minimal-wallpaper.jpg) no-repeat center center fixed;
-    // -webkit-background-size: cover;
-    // -moz-background-size: cover;
-    // -o-background-size: cover;
-    // background-size: cover;
-    @include gradient-bg;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
+
     position: relative;
 
     @include mobile-only{
@@ -562,8 +542,6 @@ body{
                 min-height: 85px;
                 background: #7CE4E8;
                 margin: 0 0 6% 8%;
-                @include br;
-
                 @include mobile-only{
                     min-height: 0;
                     display: inline-block;
@@ -583,8 +561,6 @@ body{
                     }
 
                     #avatar_ {
-                        height: 100%;
-                        width: 38%;
                         float: left;
                         position: relative;
                         z-index: 999;
@@ -610,13 +586,6 @@ body{
 
 
                         img {
-                            width: 100%;
-                            height: 140%;
-                            float: left;
-                            @include br;
-                            min-width: 40px;
-                            min-height: 40px;
-
                             @include tablet-portrait-only{
                                 width: 100%;
                                 height: 100%;
@@ -635,7 +604,6 @@ body{
                     #player-container-inner{
                         float: left;
                         position: relative;
-                        bottom: 8px;
                         left: 2px;
                         max-width: 62%;
                         overflow: hidden;
@@ -722,7 +690,6 @@ body{
                     bottom: 0;
                     text-align: center;
                     width: 100%;
-                    @include br-bottom;
                     background: black;
                     opacity:0.4;
 
@@ -759,15 +726,15 @@ body{
                 max-height: 220px;
 
                 @include mobile-only{
-                    min-height: 140px;
-                    max-height: 140px;
+                    min-height: 170px;
+                    max-height: 170px;
 
                 }
 
                 @include tablet-portrait-only{
                     height: 16%;
-                    min-height: 180px;
-                    max-height: 180px;
+                    min-height: 230px;
+                    max-height: 230px;
                 }
 
                 #menu-timeremaining-container{
@@ -933,18 +900,16 @@ body{
                                     color: #333;
 
                                     #start-game-button{
-                                        border-radius: 8px;
-                                        -moz-border-radius: 5px;
-                                        -webkit-border-radius: 5px;
                                         font-size: 20px;
                                         font-size: 1.25rem;
                                         font-weight: 400;
                                         color: white;
-                                        background: #1F959C;
+                                        background: darken(#7BA342,10%);
                                         padding: 0.65em 20px;
                                         margin: 10px;
                                         width: 65%;
                                         cursor: pointer;
+                                        transition: background-color .3s ease-in;
 
                                         @include tablet-portrait-only{
                                             padding: 0.65em 2px;
@@ -958,7 +923,7 @@ body{
                                     }
 
                                     #start-game-button:hover{
-                                       background:#41C2CA;
+                                       background:darken(#7BA342,5%);
                                     }
                                 }
                             }
@@ -1032,7 +997,7 @@ body{
                         }
 
                         @include mobile-only{
-                            font-size: 13px;
+                            font-size: 11px;
                             padding: 0px 10px 10px 10px;
                         }
                     }
@@ -1133,7 +1098,6 @@ body{
                 color: white;
                 width: 100%;
                 background: #252525;
-                @include br;
                 text-align: center;
                 overflow: hidden;
                 height: 50%;
@@ -1226,8 +1190,6 @@ body{
                 width: 100%;
                 background: #252525;
                 margin-top: 11px;
-                @include br;
-
                 @include mobile-only{
                     background: transparent;
                     margin-top: 2px;
@@ -1325,5 +1287,4 @@ body{
         border-top: 0px solid black !important;
     }
 }
-
 

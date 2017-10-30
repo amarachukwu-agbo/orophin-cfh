@@ -90,8 +90,12 @@ gulp.task('test', () => gulp.src(
   .pipe(plugins.coverage.format())
   .pipe(gulp.dest('reports')));
 
-gulp.task('sass', () => gulp.src('./public/**/*.scss')
-  .pipe(plugins.sass().on('error', plugins.sass.logError))
+gulp.task('sass', () => gulp.src('./public/**/index.scss')
+  .pipe(plugins.sass({ includePaths: './public/custom/' }).on('error', plugins.sass.logError))
+  .pipe(plugins.autoprefixer({
+    browsers: ['last 2 versions'],
+    cascade: false
+  }))
   .pipe(gulp.dest('./public'))
   .pipe(plugins.livereload()));
 
