@@ -102,11 +102,11 @@
   margin-bottom: 10px;
 }
 .sign-error{
-  display: none;
   color: red;
   text-align: center;
-  margin: 4px;
-  padding: 2px;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  
 }
 
 input[type=password]:focus:not([readonly])+label,
@@ -122,6 +122,9 @@ input[type=text]:focus:not([readonly])
   -webkit-box-shadow: 0 1px 0 0 green;
   box-shadow: 0 1px 0 0 green;
   border-bottom: green;
+}
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill{
+  background-color: #fff;
 }
 .md-form .prefix.active{
   color: green;
