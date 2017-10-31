@@ -1,58 +1,50 @@
-<div id="main-bod" ng-controller="IndexController">
-  <!-- Fixed Logo & Menu Bar Start -->
-  <div id="top-part">
-    <div class="wpb-top-bar">
-      <div class="mod-contain" id="navver">
-        <div class="row">
-          <!-- Logo -->
-          <div class="wpb-logo-container">
-            <div id="landing-logo"> 
-              <span id="first-word">Cards</span>
-              <span id="second-word"> for</span> 
-              <span id="third-word">Humanity</span> 
-            </div> 
-            <div class="col-md-9 wpb-menu-container">
-              <ul class="wpb-main-menu">
-                <li><a href="/">Home</a></li>
-              </ul>
-            </div>
-          </div>      
+<div ng-show="showAuthPage()" ng-controller="IndexController">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <a class="navbar-brand" href="#!" target="_self">
+          <img src="img/logo.png" height="50" class="d-inline-block align-top">
+        </a>
+        <div class="nav justify-content-end ml-auto">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav snip">
+              <li class="nav-item active">
+                <a class="nav-link" href="#!">Home
+                  <span class="sr-only">
+                    (current)</span>
+                </a>
+              </li>
+            </ul>
+    
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
+      </nav>
 <!-- Fixed Logo & Menu Bar End -->
 
 <!-- Landing Start -->
-<div class="wpb-teaser parallax-background" id="homer">
-  <div class="background-opacity"></div> 
-  <div class="modified-container">
-    <div class="row" id="main-text"> 
-    <!-- Teaser Text Start -->
-    <div id="landing-logo">
-      <h2 id="slogan">Choose an Avatar!</h2>
-      <p id="create">You're almost there! Just pick an avatar from the options below!</p>
-
-      <div class="sign-body">
-        <div class="more-sign">
-          <form class="signup form-horizontal" action="/users/avatars" method="post">
-            <div id="contain-avatars">
-              <ul class="avatar-list">
-                <li ng-repeat="avatar in avatars" class="avatars ng-scope">
-                  <input name="avatar" type='radio' value="{{$index}}">
-                    <img ng-src="{{avatar}}">
-                  </input>
-                </li>
-              </ul>
-            </div>
-            <div class="form-actions">
-              <button id="sign-up-btn" type='submit'>Let's Go!</button>
-            </div>
-          </form>
-        </div>
+<div class="container" id="homer">
+  <div id="landing-logo" class="col-md-8 offset-md-2 z-depth-4 ">
+    <h2 id="slogan">Choose an Avatar!</h2>
+    <p id="create">You're almost there! Just pick an avatar from the options below!</p>
+    <div class="sign-body">
+      <div class="more-sign">
+        <form action="/users/avatars" method="post">
+          <div id="contain-avatars">
+            <ul class="avatar-list">
+              <li ng-repeat="avatar in avatars" class="avatars ng-scope">
+                <input name="avatar" type='radio' value="{{$index}}">
+                <img ng-src="{{avatar}}">
+                </input>
+              </li>
+            </ul>
+          </div>
+          <div class="">
+            <button class="btn form-button" type='submit'>Let's Go!</button>
+          </div>
+        </form>
       </div>
-    </div>
-    </div>
     </div>
   </div>
 </div>

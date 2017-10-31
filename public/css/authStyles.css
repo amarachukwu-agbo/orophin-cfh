@@ -157,3 +157,26 @@ input[type=text]:focus:not([readonly])
   width: -webkit-calc(100% - 7rem);
   width: calc(100% - 7rem);
 }
+#landing-logo{
+  text-align: center;
+  margin-top: 130px;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+#landing-logo .form-button{
+  border-radius: 20px;
+  display: inline-block;
+  background-color: #782149;
+  padding: 15px;
+}
+
+#landing-logo .form-button:hover{
+  background: #8F3527;
+}
+#landing-logo h2{
+  color: #782149;
+}
+#landing-logo .create{
+  padding: 0 5px;
+}
