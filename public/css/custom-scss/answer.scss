@@ -1,0 +1,91 @@
+#social-bar-container{
+  top:100px !important;
+}
+#lobby-how-to-play{
+  font-size: 30px !important;
+}
+#oh-el{
+  font-size: 20px !important;
+}
+.card-answer, .card-picked{
+  width: 300px;
+  min-width: 300px;
+  // min-height:100%;
+  height: 400px !important;
+  padding: 1.5em !important;
+  max-height: 95% !important;
+  font-size: 1.6em !important;
+}
+.hand{
+  display: flex;
+  height: inherit;
+  flex-direction: row;
+  height: 90% !important;
+  overflow-x: scroll;
+  justify-content: center;
+  align-items: stretch;
+  padding: 0 .5em;
+  width: fit-content !important;
+
+}
+#cards-container,
+#info-container,
+#game-end-container,
+#czar-blank-container{
+  height: 90% !important;
+}
+#game-end-container{
+  margin-top: 20px;
+}
+.game-end-answer-text {
+  max-width: 300px;
+  margin: 20px auto;
+}
+div#charity-widget-container{
+  margin-top: 20px;
+}
+#charity-widget-container{
+  margin-top: 0 !important;
+}
+#crDonateWidget_cfhio_cards4humanity{
+  margin: 0 auto;
+}
+
+.cards-container{
+  overflow: scroll;
+}
+
+.greenr{
+  height: 100% !important;
+}
+.card-picked{
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.cfh-logo{
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: .8em;
+  text-transform: capitalize;
+  font-style: oblique;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.52);
+  & img{
+    width: 40px;
+  }
+}
+@media(max-width: 991px){
+  .card-answer{
+    height: 300px !important;
+  }
+}
+@media (max-width: 520px){
+  #charity-widget-container {
+    display: block !important;
+    width: 100% !important;
+    margin-top: 20px
+  }
+}

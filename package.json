@@ -81,6 +81,7 @@
     "grunt-contrib-watch": "~0.5.3",
     "grunt-mocha-test": "~0.7.0",
     "grunt-nodemon": "~0.1.1",
+    "gulp-autoprefixer": "^4.0.0",
     "jasmine": "^2.8.0",
     "karma": "^1.7.1",
     "karma-chrome-launcher": "^2.2.0",
