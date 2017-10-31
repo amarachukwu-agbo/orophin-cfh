@@ -1,5 +1,5 @@
 </script>
-<div id="app-container" ng-controller="GameController">
+<div id="app-container" ng-controller="GameController" class="game-bg">
   <nav class="game-screen-navbar d-flex ">
     <a class="navbar-brand" href="#index.html" target="_self">
       <img src="img/logo/logo.png" height="50" class="d-inline-block align-top">
@@ -15,8 +15,8 @@
           <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
         </a>
       </li>
-      <li class="btn btn-danger">
-        <a class="text-uppercase " target="_self" ng-click="abandonGame()">Quit
+      <li class="btn btn-danger" ng-click="abandonGame()">
+        <a class="text-uppercase " target="_self">Quit Game
         </a>
       </li>
     </ul>
