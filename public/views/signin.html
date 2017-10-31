@@ -12,7 +12,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav snip">
           <li class="nav-item active">
-            <a class="nav-link" href="signup">Sign Up
+            <a class="nav-link" href="#!/signup">Sign Up
               <span class="sr-only">
                 (current)</span>
             </a>
@@ -27,8 +27,8 @@
     <div class="col-md-6 offset-md-3">
       <form class="z-depth-4 auth-form-style" ng-submit="login()" method="post">
         <h2 class="form-header">Sign In</h2>
-        <div class="sign-error">
-          {{ errorMessage }}
+        <div class="sign-error" ng-show="errorMessage">
+            <i class="fa fa-exclamation-triangle"></i> &nbsp; {{ errorMessage }}
         </div>
         <div class="md-form" id="form-color-focus">
           <i class="material-icons prefix">account_circle</i>
@@ -43,7 +43,7 @@
         <div class="sign-btn-wrapper">
           <button class="btn form-button" type='submit'>SignIn</button>
           <p class="text-right">Don't have an account?
-            <a href="signup">Register</a>
+            <a href="#!/signup">Register</a>
           </p>
         </div>
         <div class="oauth-auth">
