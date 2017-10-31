@@ -120,7 +120,14 @@ angular.module('mean.system')
       return game.winningCard !== -1;
     };
 
+    $scope.showStartGameModal = function() {
+      if (game.players.length >= game.playerMinLimit) {
+        $('#startGameModal').modal({backdrop: true});
+      }
+    };
+
     $scope.startGame = function() {
+
       game.startGame();
     };
 

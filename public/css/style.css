@@ -93,6 +93,10 @@ body, html {
   cursor: pointer;
 }
 
+.navbar.navbar-dark .breadcrumb .nav-item.active>.nav-link, .navbar.navbar-dark .navbar-nav .nav-item.active>.nav-link {
+  background-color: rgba(255,255,255,0);
+}
+
 .navbar-toggler {
   color: white;
 }

@@ -13,7 +13,8 @@
       <div id="loading-container">
         <div id="loading-gif"><img ng-src="../img/loader.gif"/></div>
       </div>
-      <div id="start-game-container" ng-click="startGame()" ng-show="(game.playerIndex === 0 || game.joinOverride) && game.players.length >= game.playerMinLimit">
+      <!-- <div id="start-game-container" ng-click="showStartGameModal()" ng-show="(game.playerIndex === 0 || game.joinOverride) && game.players.length >= game.playerMinLimit"> -->
+        <div id="start-game-container" ng-click="showStartGameModal()" ng-show="(game.playerIndex === 0 || game.joinOverride)">
         <div id='start-game-button'>
           Start Game</br>with {{game.players.length}} players
         </div>
@@ -34,5 +35,26 @@
       </div>
     </div>
   </div>
-</div>
+
+  <div id="startGameModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true" style="background-color: rgba(0,0,0,.70);">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to start the game with {{game.players.length}} players
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" ng-click="startGame()">Start Game</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
 
