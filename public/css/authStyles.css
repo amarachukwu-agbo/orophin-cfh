@@ -107,11 +107,6 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill{
   overflow-x: scroll;
 }
 
-.auth-form-style .md-form .prefix~input, 
-.auth-form-style .md-form .prefix~textarea {
-  width: -webkit-calc(100% - 7rem);
-  width: calc(100% - 7rem);
-}
 #landing-logo{
   text-align: center;
   margin-top: 130px;
