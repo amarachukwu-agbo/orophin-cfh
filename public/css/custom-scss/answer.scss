@@ -10,7 +10,6 @@
 .card-answer, .card-picked{
   width: 300px;
   min-width: 300px;
-  // min-height:100%;
   height: 400px !important;
   padding: 1.5em !important;
   max-height: 95% !important;
@@ -21,12 +20,6 @@
   height: inherit;
   flex-direction: row;
   height: 90% !important;
-  overflow-x: scroll;
-  justify-content: center;
-  align-items: stretch;
-  padding: 0 .5em;
-  width: fit-content !important;
-
 }
 #cards-container,
 #info-container,
@@ -50,14 +43,20 @@ div#charity-widget-container{
 #crDonateWidget_cfhio_cards4humanity{
   margin: 0 auto;
 }
+.charity-logo-container {
+  height: 100px;
+
+  img {
+    height: 100%;
+    max-width: 100%;
+    width: 100%;
+  }
+}
 
 .cards-container{
   overflow: scroll;
 }
 
-.greenr{
-  height: 100% !important;
-}
 .card-picked{
   display: flex;
   justify-content: flex-start;
