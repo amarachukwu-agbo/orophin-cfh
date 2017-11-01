@@ -3,7 +3,9 @@ const users = require('../app/controllers/users');
 const answers = require('../app/controllers/answers');
 const questions = require('../app/controllers/questions');
 const avatars = require('../app/controllers/avatars');
+const game = require('../app/controllers/game');
 const index = require('../app/controllers/index');
+const requiresToken = require('../app/middlewares/requiresToken');
 
 // Signup
 const loginValidation = require('./middlewares/loginValidation');
@@ -97,6 +99,9 @@ const routes = (app, passport, auth) => {
   // Home route
   app.get('/play', index.play);
   app.get('/', index.render);
+
+  // Game route
+  app.post('/api/games/:id/start', requiresToken.verifyUser, game.createGameLog);
 };
 
 module.exports = routes;

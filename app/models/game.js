@@ -10,4 +10,4 @@ const GameSchema = new Schema({
   gameWinner: { type: String, default: '' }
 }, { timestamps: true });
 
-mongoose.model('GameLog', GameSchema);
+mongoose.model('Game', GameSchema);

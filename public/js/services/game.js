@@ -1,5 +1,5 @@
 angular.module('mean.system')
-  .factory('game', ['socket', '$timeout', function (socket, $timeout) {
+  .factory('game', ['$http', 'socket', '$timeout', '$window', function ($http, socket, $timeout, $window) {
 
   var game = {
     id: null, // This player's socket ID, so we know who this player is
@@ -176,6 +176,38 @@ angular.module('mean.system')
   socket.on('notification', function(data) {
     addToNotificationQueue(data.notification);
   });
+
+    // On successfull request call
+    const onAuthSuccessful = (response) => {
+      if (response.data) {
+        return response.data;
+      }
+    };
+    // On failed request call
+    const onError = (err) => {
+      return err;
+    };
+
+    // Notify backend to save game logs When the game has ended
+    socket.on('saveGame', (data) => {
+      if (game.state === 'game ended' && $window.localStorage.token) {
+        const req = {
+          method: 'POST',
+          url: `http://localhost:3000/api/games/${game.gameID}/start`,
+          headers: {
+            'x-access-token': $window.localStorage.getItem('token')
+          },
+          data,
+        };
+        $http(req)
+          .then(
+            // success callback
+            onAuthSuccessful,
+            // error callback
+            onError
+          );
+      }
+    });
 
   game.joinGame = function(mode,room,createPrivate) {
     mode = mode || 'joinGame';

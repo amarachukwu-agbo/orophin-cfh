@@ -1,0 +1,16 @@
+.inner-timer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  flex-direction: column-reverse;
+  text-align: center;
+  &>span {
+    font-size: 1.5em;    
+    font-weight: 400;
+  }
+}
+#time {
+  font-size: 100px;
+  font-weight: bold;
+}
