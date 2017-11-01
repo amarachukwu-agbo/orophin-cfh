@@ -1,3 +1,4 @@
+
 .auth-form-style a:hover{
   color: rgb(216, 67, 44);
 }
@@ -52,11 +53,11 @@
   margin-top: 130px;
   margin-bottom: 10px;
 }
-.sign-error{
+#auth-error{
   color: red;
   text-align: center;
-  margin-bottom: 10px;
-  padding-bottom: 8px;
+  margin-bottom: 17px;
+  padding-bottom: 15px;
   
 }
 
@@ -125,6 +126,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill{
 }
 #landing-logo h2{
   color: #782149;
+  font-family: 'Bree Serif', serif;
 }
 #landing-logo .create{
   padding: 0 5px;

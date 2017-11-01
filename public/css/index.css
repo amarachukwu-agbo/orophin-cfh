@@ -71,10 +71,10 @@
   color: #782149 !important; }
 
 .btn-color {
-  background-color: #7BA342 !important; }
+  background-color: #7ba342 !important; }
 
 .btn-danger {
-  background-color: #B20000 !important; }
+  background-color: #b20000 !important; }
 
 .inner-timer-container {
   display: -webkit-box;
@@ -273,9 +273,6 @@ div#charity-widget-container {
 .cards-container {
   overflow: scroll; }
 
-.greenr {
-  height: 100% !important; }
-
 .card-picked {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -351,7 +348,8 @@ div#charity-widget-container {
 .question-container {
   height: inherit; }
 
-.right-container, .left-container {
+.right-container,
+.left-container {
   height: 100%;
   padding: 0;
   margin: 0; }
@@ -396,10 +394,19 @@ div#charity-widget-container {
 .no-padding {
   padding: 0 !important; }
 
-.header-font-family, h1, h2, h3, h4, h5, h6 {
+.header-font-family,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: 'Bree Serif', serif !important; }
 
-.body-font-family, body, .btn, .card {
+.body-font-family,
+body,
+.btn,
+.card {
   font-family: 'Ubuntu', sans-serif !important; }
 
 @media (max-width: 991px) {

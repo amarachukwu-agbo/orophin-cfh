@@ -27,7 +27,7 @@
       <div class="col-md-6 offset-md-3">
         <form class="z-depth-4 auth-form-style" ng-submit="signUp()" method="post">
           <h2 class="form-header">Sign Up</h2>
-          <div class="sign-error" ng-show="errorMessage">
+          <div id="auth-error" ng-show="errorMessage">
               <i class="fa fa-exclamation-triangle"></i> &nbsp; {{ errorMessage }}
           </div>
           <div class="md-form">
