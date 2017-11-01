@@ -12,7 +12,7 @@
         <ul class="navbar-nav snip">
 
           <li class="nav-item active">
-            <a class="nav-link" href="signin">Sign In
+            <a class="nav-link" href="#!/signin">Sign In
               <span class="sr-only">
                 (current)</span>
             </a>
@@ -27,8 +27,8 @@
       <div class="col-md-6 offset-md-3">
         <form class="z-depth-4 auth-form-style" ng-submit="signUp()" method="post">
           <h2 class="form-header">Sign Up</h2>
-          <div class='sign-error'>
-            {{ errorMessage }}
+          <div class="sign-error" ng-show="errorMessage">
+              <i class="fa fa-exclamation-triangle"></i> &nbsp; {{ errorMessage }}
           </div>
           <div class="md-form">
             <i class="material-icons prefix">account_circle</i>
@@ -37,7 +37,7 @@
           </div>
           <div class="md-form">
             <i class="material-icons prefix">email</i>
-            <input class="form-control" id="email" type="email" name="email" ng-model="data.email" required novalidate />
+            <input class="form-control" id="email" type="text" name="email" ng-model="data.email" required novalidate />
             <label for="email">Email</label>
           </div>
           <div class="md-form">
@@ -57,7 +57,7 @@
           <div class="sign-btn-wrapper">
             <button class="btn form-button" type='submit'>SignUp</button>
             <p class="text-right">Have an account?
-              <a href="signin">Signin</a>
+              <a href="#!/signin">Signin</a>
             </p>
           </div>
 
