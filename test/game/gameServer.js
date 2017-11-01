@@ -29,9 +29,9 @@ describe('User login', () => {
     };
     gameData = {
       gameID: 'wstr',
-      gamePlayers: ['ovie', 'mark', 'jennifer'],
+      gamePlayers: ['kemi', 'mark', 'jennifer'],
       gameRound: 7,
-      gameWinner: 'ovie'
+      gameWinner: 'kemi'
     };
   });
   it('should return 200 for succesful login', (done) => {
