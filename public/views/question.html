@@ -15,7 +15,7 @@
             <div id="player-count" class="text-left">{{game.players.length}} / 6 </div>
             <div id="the-word-players" class="text-left"> Players </div>
           </div>
-          <div id="start-game-container" ng-click="startGame()" ng-show="(game.playerIndex === 0 || game.joinOverride) && game.players.length >= game.playerMinLimit">
+          <div id="start-game-container" ng-click="showStartGameModal()" ng-show="(game.playerIndex === 0 || game.joinOverride)">
             <div class="btn btn-color">
               Start Game
             </div>
@@ -37,5 +37,43 @@
       </div>
     </div>
   </div>
-</div>
+
+  <div id="startGameModal" class="modal fade ">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Cards For Humanity</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Start the game with {{game.players.length}} players?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-color" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-color" ng-click="startGame()">Start Game</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="notEnoughPlayersModal" class="modal fade ">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Cards For Humanity</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          {{game.players.length}} player(s) available for this game. You cannot start the game at this time you need a minimum of 3 players to start.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-color" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
 
