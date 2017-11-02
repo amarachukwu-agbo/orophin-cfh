@@ -107,7 +107,9 @@ body,
 
 @media(max-width: 991px) {
   .right-container {
-    display: none;
+    max-height: 0;
+    max-width: 0;
+    position: absolute;
   }
   .game-bg {
     zoom: 0.9;
