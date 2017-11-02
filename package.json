@@ -19,7 +19,6 @@
     "test": "cross-env NODE_ENV=test gulp test",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov  | coveralls",
     "test:client": "karma start",
-    "heroku-postbuild": "npm run bower",
     "seed:answers": "mongoimport --db cards-for-humanity --collection answers --file ./app/seeds/answers.json",
     "seed:questions": "mongoimport --db cards-for-humanity --collection questions --file ./app/seeds/questions.json",
     "seed:db": "npm run seed:answers & npm run seed:questions"

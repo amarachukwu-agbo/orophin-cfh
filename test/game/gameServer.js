@@ -19,7 +19,7 @@ const Game = mongoose.model('Game');
 // delete all records in Game model
 Game.collection.drop();
 
-describe('User login', () => {
+describe('Game Log', () => {
   beforeEach(() => {
     data = {
       auth: {

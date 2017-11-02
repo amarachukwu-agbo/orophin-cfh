@@ -10,7 +10,7 @@ const requiresToken = {
     } else if (token) {
       jwt.verify(token, process.env.TOKEN_SECRET, (err, decoded) => {
         if (err) {
-          // return res.status(403).send(err);
+          // check if token has expired
           if (err.name === 'TokenExpiredError') {
             return res.send(403, { message: 'expired user authorization token' });
           }
