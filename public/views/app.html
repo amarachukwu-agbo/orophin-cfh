@@ -1,5 +1,5 @@
 </script>
-<div id="app-container" ng-controller="GameController">
+<div id="app-container" ng-controller="GameController" class="game-bg">
   <nav class="game-screen-navbar d-flex ">
     <a class="navbar-brand" href="#index.html" target="_self">
       <img src="img/logo/logo.png" height="50" class="d-inline-block align-top">
@@ -15,8 +15,8 @@
           <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
         </a>
       </li>
-      <li class="btn btn-danger">
-        <a class="text-uppercase " target="_self" ng-click="abandonGame()">Quit
+      <li class="btn btn-danger" ng-click="abandonGame()">
+        <a class="text-uppercase " target="_self">Quit Game
         </a>
       </li>
     </ul>
@@ -72,7 +72,36 @@
                 <player></player>
               </div>
           </div>    
-          <div class="right-container-bottom"></div>
+          <div class="right-container-bottom chat-box" ng-controller="ChatController">
+            <div class="chat-box__messenger" ng-show="isChatOpen">
+              <div class="chat-box__header">
+                <h4>Chats</h4>
+              </div>
+              <ul class="chats">
+                <li class="chat" ng-repeat="chat in chats">
+                  <img class="chat__user-img" ng-src="{{chat.user.avatar}}" alt="{{chat.user.username}}">
+                  <div class="chat__content">
+                    <div class="chat__content--top">
+                      <span class="chat__user-name">{{chat.user.username}}</span>
+                      <span class="chat__created-at">{{chat.createdAt}}</span>
+                    </div>
+                    <p class="chat__message">{{chat.content}}</p>
+                  </div>
+                </li>
+              </ul>
+              <form ng-submit="addChat()" class="chat-box__form">
+                <img src="https://image.flaticon.com/icons/png/512/42/42877.png" alt="">
+                <input type="text" placeholder="donated? tell people about it" ng-model="content" id="chatInput"/>
+              </form> 
+            </div>
+            
+            <div class="chat-box__launcher" ng-click="toggleChatOpen()">
+              <i class="fa fa-times fa-2x" aria-hidden="true" ng-show="isChatOpen"></i>
+              <i class="fa fa-comment fa-2x" aria-hidden="true" ng-hide="isChatOpen">
+                <span class="hasUnread" ng-show="hasUnreadMessages"></span>
+              </i>
+            </div>
+          </div>
       </div>
   </div>
 </div>

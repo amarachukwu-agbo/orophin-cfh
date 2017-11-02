@@ -1,52 +1,4 @@
 
-.snip li {
-  display: inline-block;
-  list-style: outside none none;
-  margin: 0.5em 0.6em;
-  position: relative;
-}
-.snip li a {
-  color: #fff;
-  text-decoration: none;
-}
-.snip li:before,
-.snip li:after {
-  -webkit-transition: all 0.35s ease;
-  transition: all 0.35s ease;
-  height: 2px;
-  width: 35%;
-  background-color: #782149;
-  position: absolute;
-  content: '';
-  opacity: 0;
-}
-.snip li:before {
-  top: 0;
-  left: 0;
-}
-.snip li:after {
-  bottom: 0;
-  right: 0;
-}
-.snip li:hover:before,
-.snip li.hover:before,
-.snip li:hover:after,
-.snip li.hover:after {
-  opacity: 1;
-}
-.snip li:hover:before,
-.snip li.hover:before {
-  left: 65%;
-}
-.snip li:hover:after,
-.snip li.hover:after {
-  right: 65%;
-}
-
-.navbar-toggler {
-  color: white;
-}
-
 .auth-form-style a:hover{
   color: rgb(216, 67, 44);
 }
@@ -101,11 +53,11 @@
   margin-top: 130px;
   margin-bottom: 10px;
 }
-.sign-error{
+#auth-error{
   color: red;
   text-align: center;
-  margin-bottom: 10px;
-  padding-bottom: 8px;
+  margin-bottom: 17px;
+  padding-bottom: 15px;
   
 }
 
@@ -155,11 +107,6 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill{
   overflow-x: scroll;
 }
 
-.auth-form-style .md-form .prefix~input, 
-.auth-form-style .md-form .prefix~textarea {
-  width: -webkit-calc(100% - 7rem);
-  width: calc(100% - 7rem);
-}
 #landing-logo{
   text-align: center;
   margin-top: 130px;
@@ -179,7 +126,9 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill{
 }
 #landing-logo h2{
   color: #782149;
+  font-family: 'Bree Serif', serif;
 }
 #landing-logo .create{
   padding: 0 5px;
 }
+
