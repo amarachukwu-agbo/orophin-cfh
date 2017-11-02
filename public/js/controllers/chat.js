@@ -43,7 +43,7 @@ angular.module('mean.system')
     $scope.isChatOpen = false;
     $scope.hasUnreadMessages = false;
 
-    $scope.$watch('game.gameID', (newValue, oldValue) => {
+    $scope.$watch('game.gameID', (newValue) => {
       if (newValue !== null) {
         const chatRef = new Firebase(`https://orophin-cfh.firebaseio.com/chats/${game.gameID}`);
         $scope.chats = $firebaseArray(chatRef);
@@ -66,8 +66,8 @@ angular.module('mean.system')
         const chat = new Chat({ avatar, username }, $scope.content);
         $scope.chats.$add(chat);
 
-        const objDiv = document.querySelector('.chats');
-        objDiv.scrollTop = objDiv.scrollHeight;
+        const chatsList = document.querySelector('.chats');
+        chatsList.scrollTop = chatsList.scrollHeight;
         $scope.content = '';
       }
     };
@@ -79,8 +79,8 @@ angular.module('mean.system')
         $scope.content = '';
       }
       $scope.isChatOpen = !$scope.isChatOpen;
-      const objDiv = document.querySelector('.chats');
+      const chatsList = document.querySelector('.chats');
       // 50 is the bottom margin on the last li in chat list
-      objDiv.scrollTop = objDiv.scrollHeight + 50;
+      chatsList.scrollTop = chatsList.scrollHeight + 50;
     };
   }]);
