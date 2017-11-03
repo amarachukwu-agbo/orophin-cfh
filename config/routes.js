@@ -42,6 +42,7 @@ const routes = (app, passport) => {
 
   // Invite users route
   app.post('/api/users/invite', users.inviteUser);
+
   // Setting the facebook oauth routes
   app.get('/auth/facebook', passport.authenticate('facebook', {
     scope: ['email'],

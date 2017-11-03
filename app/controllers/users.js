@@ -114,7 +114,7 @@ exports.create = (req, res) => {
 exports.searchUser = (req, res) => {
   const searchTerm = req.query.q;
   if (searchTerm === '') {
-    return res.json({
+    return res.status(404).json({
       message: 'Enter a value'
     });
   }
@@ -123,7 +123,7 @@ exports.searchUser = (req, res) => {
       return res.json(error);
     }
     if (users.length === 0) {
-      return res.json({
+      return res.status(404).json({
         message: 'No user found'
       });
     }
@@ -141,7 +141,7 @@ exports.inviteUser = (req, res) => {
     }
   });
   const mailOptions = {
-    from: '"Cards for Humanity" <notification@cfh.com>',
+    from: '"Cards for Humanity" <teamorophincfh@gmail.com>',
     to: req.body.mailTo,
     subject: 'Invitation to join a session of cfh',
     text: `Click the link to join game: ${req.body.gameLink}`,
@@ -150,12 +150,12 @@ exports.inviteUser = (req, res) => {
 
   transporter.sendMail(mailOptions, (error) => {
     if (error) {
-      res.json({
-        message: 'Error occured'
+      res.status(400).json({
+        message: 'An error occured while trying to send your mail'
       });
     } else {
-      res.json({
-        message: 'Message sent'
+      res.status(200).json({
+        message: 'Message sent successfully'
       });
     }
   });
