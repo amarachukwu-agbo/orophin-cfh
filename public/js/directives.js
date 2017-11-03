@@ -1,4 +1,4 @@
-angular.module('mean.directives', [])
+angular.module('mean.directives', ['angular-jwt'])
 .directive('player', function () {
   return {
     restrict: 'EA',
@@ -65,13 +65,26 @@ angular.module('mean.directives', [])
     templateUrl: '/views/timer.html',
     link: function (scope, elem, attr) { }
   };
-}).directive('landing', function () {
+}).directive('landing', function (jwtHelper, $http, $cookies, $cookieStore, $location) {
   return {
     restrict: 'EA',
     link: function (scope, elem, attr) {
       scope.showOptions = true;
-
       if (window.localStorage.token) {
+        const token = window.localStorage.getItem('token');
+        const isTokenExpired = jwtHelper.isTokenExpired(token);
+        // check if token has expired
+        if (isTokenExpired) {
+          // signout user
+          $http.get('/signout').success(() => {
+            angular.forEach($cookies, (v, k) => {
+              $cookieStore.remove(k);
+            });
+            window.localStorage.removeItem('token');
+            $location.path('/');
+            window.location.reload();
+          });
+        }
         scope.showOptions = false;
       } else {
         scope.showOptions = true;

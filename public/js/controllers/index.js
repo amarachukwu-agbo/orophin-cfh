@@ -53,13 +53,6 @@ angular.module('mean.system')
         return false;
       };
 
-      $scope.avatars = [];
-      AvatarService.getAvatars()
-        .then((data) => {
-          $scope.avatars = data;
-        });
-
-
       const onAuthSuccessful = (response) => {
         if (response.data.token) {
           // add token to localstorage
@@ -111,15 +104,19 @@ angular.module('mean.system')
         }
       };
 
-      // function to signup user
+      // function to signout user
       $scope.signOut = () => {
-        // clear token from cookies
-        angular.forEach($cookies, (v, k) => {
-          $cookieStore.remove(k);
+        // make signout http request
+        $http.get('/signout').success(() => {
+          // clear token from cookies
+          angular.forEach($cookies, (v, k) => {
+            $cookieStore.remove(k);
+          });
+          // clear token from local storage
+          $window.localStorage.removeItem('token');
+          $location.path('/');
+          $window.location.reload();
         });
-        // clear token from localStorage
-        $window.localStorage.clear();
-        $location.path('/#!');
       };
 
       $scope.avatars = [];
