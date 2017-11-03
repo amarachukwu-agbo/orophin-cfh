@@ -1,0 +1,39 @@
+.introjs-fixedTooltip, .introjs-helperLayer {
+  background-color: transparent !important;
+  border: 2px solid white;
+  /* zoom: 0.8; */
+}
+
+.introjs-bullets a.active {
+  background: #C05A3D !important;
+}
+
+.introjs-tooltiptext {
+  color: #350018 !important;
+}
+
+.introjs-tooltipbuttons {
+  text-align: center !important;
+}
+
+/* .introjs-overlay {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  opacity: 0.5;
+} */
+
+/* #div.introjs-helperLayer {
+  width: 615px;
+  height: 210px;
+  top: 180px;
+  left: 160px;
+} */
+
+/* .introjs-relativePosition, tr.introjs-showElement>td, tr.introjs-showElement>th {
+  position: fixed;
+  overlay: hidden;
+  float: left;
+} */
