@@ -1,11 +1,17 @@
 </script>
-<div id="app-container" ng-controller="GameController" class="game-bg">
-  <nav class="game-screen-navbar d-flex ">
-    <a class="navbar-brand" href="#index.html" target="_self">
+<div id="app-container" ng-controller="GameController" ng-init="takeTour()" class="game-bg">
+  <nav class="navbar navbar-expand-lg navbar-dark game-screen-navbar d-flex">
+    <a id="logo" class="navbar-brand" ng-href="#!/app">
       <img src="img/logo/logo.png" height="50" class="d-inline-block align-top">
     </a>
+    <div class="nav justify-content-end ml-auto">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav">
-      <li class="bg-transparent">
+      <li id="tweet" class="bg-transparent nav-item active">
         <a class="nav-link text-uppercase" target="_self" href="https://twitter.com/share"
         data-url="http://cfh.io" 
         data-text="Cards for Humanity: A Game for Horrible People Desperately Trying to do Good" 
@@ -15,17 +21,22 @@
           <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
         </a>
       </li>
-      <li class="btn btn-danger" ng-click="abandonGame()">
+      <li class="btn btn-color" ng-click="retakeTour()" id="retake-tour">
+        <a class="text-uppercase">TAKE A QUICK TOUR
+        </a>
+      </li>
+      <li id="abandon-game-button" class="btn btn-danger" ng-click="abandonGame()">
         <a class="text-uppercase " target="_self">Quit Game
         </a>
       </li>
     </ul>
+  </div>
+    </div>
   </nav>
   <div class="game-screen-body d-flex flex-column flex-lg-row">
      <!-- MOBILE PLAYER STARTS-->
      <div class="card mobile-player" 
-     style="background-color:{{colors[game.playerIndex]}}"
-     >
+     style="background-color:{{colors[game.playerIndex]}}">
       <div id ="above-czar-container" style="height:unset!important">
         <div id="avatar_">
           <img ng-src="{{game.players[game.playerIndex].avatar}}" id="img"/>
@@ -56,12 +67,12 @@
                     <timer style="height:inherit"></timer>
                   </div>
                 </div>
-                <div id="question-container-outer" >
+                <div id="question-container-outer">
                   <question></question>
                 </div>
               </div>
           </div>
-          <div class="answers col-12 bg-color">
+          <div id="answer-card" class="answers col-12 bg-color">
             <answers class="answers col-12"></answers>
           </div>
         </div>
@@ -72,7 +83,7 @@
                 <player></player>
               </div>
           </div>    
-          <div class="right-container-bottom chat-box" ng-controller="ChatController">
+          <div id="chat" class="right-container-bottom chat-box" ng-controller="ChatController">
             <div class="chat-box__messenger" ng-show="isChatOpen">
               <div class="chat-box__header">
                 <h4>Chats</h4>
