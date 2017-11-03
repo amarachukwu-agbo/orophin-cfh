@@ -164,21 +164,21 @@ angular.module('mean.system')
       }
     } else if (data.state === 'waiting for czar to decide') {
       if (game.czar === game.playerIndex) {
-        addToNotificationQueue("Everyone's done. Choose the winner!");
+          addToNotificationQueue("Everyone's done. Choose the winner!");
       } else {
-        addToNotificationQueue('The czar is contemplating...');
+          addToNotificationQueue('The czar is contemplating...');
+        }
+      } else if (data.state === 'winner has been chosen' &&
+          game.curQuestion.text.indexOf('<u></u>') > -1) {
+            game.curQuestion = data.curQuestion;
+        } else if (data.state === 'awaiting players') {
+          joinOverrideTimeout = $timeout(function() {
+            game.joinOverride = true;
+          }, 15000);
+      } else if (data.state === 'game dissolved' || data.state === 'game ended') {
+        game.players[game.playerIndex].hand = [];
+        game.time = 0;
       }
-    } else if (data.state === 'winner has been chosen' &&
-      game.curQuestion.text.indexOf('<u></u>') > -1) {
-      game.curQuestion = data.curQuestion;
-    } else if (data.state === 'awaiting players') {
-      joinOverrideTimeout = $timeout(() => {
-        game.joinOverride = true;
-      }, 15000);
-    } else if (data.state === 'game dissolved' || data.state === 'game ended') {
-      game.players[game.playerIndex].hand = [];
-      game.time = 0;
-    }
     });
 
     socket.on('notification', (data) => {
@@ -208,9 +208,9 @@ angular.module('mean.system')
         $http(req)
           .then(
           // success callback
-          onAuthSuccessful,
-          // error callback
-          onError
+            onAuthSuccessful,
+            // error callback
+            onError
           );
       }
     });
