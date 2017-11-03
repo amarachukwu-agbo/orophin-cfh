@@ -225,8 +225,8 @@
 .card-answer, .card-picked {
   width: 300px;
   min-width: 300px;
-  height: 400px !important;
-  padding: 1.5em !important;
+  height: 350px !important;
+  padding: .8em !important;
   max-height: 95% !important;
   font-size: 1.6em !important; }
 
@@ -308,20 +308,18 @@ div#charity-widget-container {
 
 .game-bg {
   padding: 0;
-  margin: 0;
-  background-image: url("../img/background-gs.jpg") !important;
-  background-size: auto !important;
-  background-position: center !important;
-  background-repeat: no-repeat !important;
-  zoom: 0.8; }
+  margin: 0; }
 
 #app-container {
   max-width: unset !important; }
 
 #gameplay-container {
   margin: 20px 0 0 0 !important;
-  height: 90vh;
-  padding: 0 1em; }
+  height: 80vh;
+  padding: 0 1em;
+  min-height: -webkit-fit-content;
+  min-height: -moz-fit-content;
+  min-height: fit-content; }
 
 #social-bar-container {
   width: 100% !important;
@@ -331,12 +329,22 @@ div#charity-widget-container {
   top: 0px !important; }
 
 .game-screen-body {
-  height: 90vh;
+  background-image: url("../img/background-gs.jpg") !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: auto !important;
+  height: 80vh;
+  min-height: -webkit-fit-content;
+  min-height: -moz-fit-content;
+  min-height: fit-content;
   width: 100%; }
 
 .gameplay-inner-left {
   margin: 0;
-  height: 100%; }
+  height: 100%;
+  min-height: -webkit-fit-content;
+  min-height: -moz-fit-content;
+  min-height: fit-content; }
   .gameplay-inner-left-top {
     height: 300px; }
   .gameplay-inner-left-bottom {
@@ -354,6 +362,11 @@ div#charity-widget-container {
   padding: 0;
   margin: 0; }
 
+.left-container {
+  min-height: -webkit-fit-content;
+  min-height: -moz-fit-content;
+  min-height: fit-content; }
+
 .right-container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -362,7 +375,10 @@ div#charity-widget-container {
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
-  padding: .2em !important; }
+  padding: .2em !important;
+  min-height: -webkit-fit-content;
+  min-height: -moz-fit-content;
+  min-height: fit-content; }
   .right-container-top {
     width: 100%;
     height: 50%;

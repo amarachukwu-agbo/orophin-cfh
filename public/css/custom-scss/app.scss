@@ -5,11 +5,6 @@
 .game-bg {
   padding:0;
   margin: 0;
-  background-image: url('../img/background-gs.jpg') !important;
-  background-size: auto !important;
-  background-position: center !important;
-  background-repeat: no-repeat !important;
-  zoom: 0.8;
 }
 
 #app-container {
@@ -17,8 +12,9 @@
 }
 #gameplay-container {
   margin: 20px 0 0 0!important;
-  height: 90vh;
+  height: 80vh;
   padding: 0 1em;
+  min-height: fit-content;
 }
 #social-bar-container {
   width: 100% !important;
@@ -28,12 +24,18 @@
   top: 0px !important; 
 }
 .game-screen-body {
-  height: 90vh;
+  background-image: url("../img/background-gs.jpg") !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: auto !important;
+  height: 80vh;
+  min-height: fit-content;
   width: 100%;
 }
 .gameplay-inner-left {
   margin: 0;
   height: 100%;
+  min-height: fit-content;
   &-top{
     height: 300px;
   }
@@ -55,15 +57,15 @@
   padding: 0;
   margin: 0;
 }
+.left-container {
+  min-height: fit-content;
+}
 
 .right-container{
   display: flex;
   flex-direction: column;
   padding: .2em !important;
-  &-bottom{
-    width: 100%;
-    height: 50%;
-   }
+  min-height: fit-content;
    &-top{
     width: 100%;
     height: 50%;

@@ -1,4 +1,8 @@
-#social-bar-container{
+// We really need to disable the important and
+// id selector rules on this file in order to
+// prevent styles on this file from been overridden
+// scss-lint:disable ImportantRule, IdSelector
+#social-bar-container {
   top:100px !important;
 }
 #lobby-how-to-play{
@@ -10,8 +14,8 @@
 .card-answer, .card-picked{
   width: 300px;
   min-width: 300px;
-  height: 400px !important;
-  padding: 1.5em !important;
+  height: 350px !important;
+  padding: .8em !important;
   max-height: 95% !important;
   font-size: 1.6em !important;
 }
