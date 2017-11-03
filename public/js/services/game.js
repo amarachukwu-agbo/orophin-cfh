@@ -133,14 +133,11 @@ angular.module('mean.system')
       if (newState || game.curQuestion !== data.curQuestion) {
         game.state = data.state;
       }
-      //added this
       if (data.state === 'czar pick card') {
         game.czar = data.czar;
         if (game.czar === game.playerIndex) {
-          addToNotificationQueue(
-            `You are now a Czar, 
-          select black to show new question`
-          );
+          addToNotificationQueue(`You are now a Czar, 
+            select black to show new question`);
         } else {
           addToNotificationQueue('Waiting for Czar to pick card');
         }
@@ -172,7 +169,7 @@ angular.module('mean.system')
         game.curQuestion.text.indexOf('<u></u>') > -1) {
         game.curQuestion = data.curQuestion;
       } else if (data.state === 'awaiting players') {
-        joinOverrideTimeout = $timeout(function () {
+        joinOverrideTimeout = $timeout(() => {
           game.joinOverride = true;
         }, 15000);
       } else if (data.state === 'game dissolved' || data.state === 'game ended') {
@@ -207,10 +204,10 @@ angular.module('mean.system')
         };
         $http(req)
           .then(
-          // success callback
-          onAuthSuccessful,
-          // error callback
-          onError
+            // success callback
+            onAuthSuccessful,
+            // error callback
+            onError
           );
       }
     });
