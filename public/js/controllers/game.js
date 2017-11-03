@@ -35,7 +35,6 @@ angular.module('mean.system')
         return {};
       }
     };
-
     $scope.sendPickedCards = function () {
       game.pickCards($scope.pickedCards);
       $scope.showTable = true;

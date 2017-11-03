@@ -363,6 +363,9 @@ div#charity-widget-container {
   -ms-flex-direction: column;
   flex-direction: column;
   padding: .2em !important; }
+  .right-container-bottom {
+    width: 100%;
+    height: 50%; }
   .right-container-top {
     width: 100%;
     height: 50%;
