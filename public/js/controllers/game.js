@@ -134,6 +134,22 @@ angular.module('mean.system')
       game.startGame();
     };
 
+    $scope.beginGame = function () {
+      game.beginGame();
+    };
+
+    $scope.shuffleCards = function (e) {
+      if ($scope.isCzar()) {
+        const card = $('#'+e.target.id);
+        card.addClass('animated flipOutY');
+        setTimeout(() => {
+          $scope.beginGame();
+          card.removeClass('animated flipOutY');
+          $('#czarSelectCard').modal('hide');
+        }, 700);
+      }
+    };
+
     $scope.abandonGame = function () {
       game.leaveGame();
       $location.path('/');
@@ -156,6 +172,9 @@ angular.module('mean.system')
     $scope.$watch('game.state', function () {
       if (game.state === 'waiting for czar to decide' && $scope.showTable === false) {
         $scope.showTable = true;
+      }
+      if ($scope.isCzar() && game.state === 'czar pick card') {
+        $('#czarSelectCard').modal('show');
       }
     });
 
