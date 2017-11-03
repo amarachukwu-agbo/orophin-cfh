@@ -221,10 +221,19 @@ Game.prototype.stateResults = function(self) {
   }, self.timeLimits.stateResults*1000);
 };
 
+// calls create game log route at the end of a game round
 Game.prototype.stateEndGame = function(winner) {
-  this.state = "game ended";
+  this.state = 'game ended';
   this.gameWinner = winner;
+  const gamePlayers = this.players.map(player => player.username);
   this.sendUpdate();
+  const gameData = {
+    gameID: this.gameID,
+    gamePlayers,
+    gameRound: this.round,
+    gameWinner: this.players[winner].username
+  };
+  this.io.sockets.in(this.gameID).emit('saveGame', gameData);
 };
 
 Game.prototype.stateDissolveGame = function() {

@@ -1,33 +1,107 @@
 </script>
-<div id="app-container" ng-controller="GameController">
-  <div id="menu-container">
-    <div id="logo">
-      <span id="first-word">Cards</span>
-      <span id="second-word"> for</span>
-      <span id="third-word">Humanity</span>
-    </div>
-    <div id = 'abandon-game-button' ng-click="abandonGame()">
-        Abandon Game
-    </div>
-        <span id="tweet-container">
-      <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://cfh.io" data-text="Cards for Humanity: A Game for Horrible People Desperately Trying to do Good" data-related="CFH_App">Tweet</a>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-    </span>
-  </div>
-  <div id="gameplay-container">
-    <div id="upper-gameplay-container">
-      <div id="menu-timeremaining-container">
-        <div id="menu-container">
-          <span id="menu-button">Menu</span>
+<div id="app-container" ng-controller="GameController" class="game-bg">
+  <nav class="game-screen-navbar d-flex ">
+    <a class="navbar-brand" href="#index.html" target="_self">
+      <img src="img/logo/logo.png" height="50" class="d-inline-block align-top">
+    </a>
+    <ul class="navbar-nav">
+      <li class="bg-transparent">
+        <a class="nav-link text-uppercase" target="_self" href="https://twitter.com/share"
+        data-url="http://cfh.io" 
+        data-text="Cards for Humanity: A Game for Horrible People Desperately Trying to do Good" 
+        data-related="CFH_App"
+        >
+        <img src="img/logo/Twitter.png" height="50" class="d-inline-block align-top">
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+        </a>
+      </li>
+      <li class="btn btn-danger" ng-click="abandonGame()">
+        <a class="text-uppercase " target="_self">Quit Game
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <div class="game-screen-body d-flex flex-column flex-lg-row">
+     <!-- MOBILE PLAYER STARTS-->
+     <div class="card mobile-player" 
+     style="background-color:{{colors[game.playerIndex]}}"
+     >
+      <div id ="above-czar-container" style="height:unset!important">
+        <div id="avatar_">
+          <img ng-src="{{game.players[game.playerIndex].avatar}}" id="img"/>
         </div>
-        <div id="timer-container">
-          <timer></timer>
+        <div id="player-container-inner">
+          <div id="player-name" class="d-flex align-items-center">
+            <h4>{{game.players[game.playerIndex].username | upperFirstLetter}}</h4>
+          </div>
+          <div id="player-score">
+           <h2>{{game.players[game.playerIndex].points}}/{{game.pointLimit}}</h2>
+          </div>
         </div>
       </div>
-      <div id="question-container-outer">
-        <question></question>
+      <div class="mobile-player-czar" ng-show="isCzar()">
+        <span id='the-czar'>CZAR</span>
       </div>
     </div>
-    <answers></answers>
+     <!-- MOBILE PLAYER ENDS -->
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-9 left-container" ng-controller="HeaderController">
+        <div id="gameplay-container" class="w-100">
+          <div class="question col-12">
+              <div id="upper-gameplay-container">
+                <div id="menu-timeremaining-container">
+                  <div id="menu-container">
+                    <span id="menu-button">Menu</span>
+                  </div>
+                  <div id="timer-container" class="card">
+                    <timer style="height:inherit"></timer>
+                  </div>
+                </div>
+                <div id="question-container-outer" >
+                  <question></question>
+                </div>
+              </div>
+          </div>
+          <div class="answers col-12 bg-color">
+            <answers class="answers col-12"></answers>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 right-container">
+          <div class="right-container-top">
+              <div id="social-bar-container" >
+                <player></player>
+              </div>
+          </div>    
+          <div class="right-container-bottom chat-box" ng-controller="ChatController">
+            <div class="chat-box__messenger" ng-show="isChatOpen">
+              <div class="chat-box__header">
+                <h4>Chats</h4>
+              </div>
+              <ul class="chats">
+                <li class="chat" ng-repeat="chat in chats">
+                  <img class="chat__user-img" ng-src="{{chat.user.avatar}}" alt="{{chat.user.username}}">
+                  <div class="chat__content">
+                    <div class="chat__content--top">
+                      <span class="chat__user-name">{{chat.user.username}}</span>
+                      <span class="chat__created-at">{{chat.createdAt}}</span>
+                    </div>
+                    <p class="chat__message">{{chat.content}}</p>
+                  </div>
+                </li>
+              </ul>
+              <form class="chat-box__form" submit="addChat()" ng-submit="addChat()">
+                <input type="text" placeholder="donated? tell people about it" ng-model="content" id="chatInput"/>
+              </form> 
+            </div>
+            
+            <div class="chat-box__launcher" ng-click="toggleChatOpen()">
+              <i class="fa fa-times fa-2x" aria-hidden="true" ng-show="isChatOpen"></i>
+              <i class="fa fa-comment fa-2x" aria-hidden="true" ng-hide="isChatOpen">
+                <span class="hasUnread" ng-show="hasUnreadMessages"></span>
+              </i>
+            </div>
+          </div>
+      </div>
   </div>
+  <script type="text/javascript" src='/js/emojis.js'></script>
 </div>

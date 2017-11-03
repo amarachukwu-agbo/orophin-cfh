@@ -18,7 +18,10 @@
     "start": "npm run bower && gulp",
     "test": "cross-env NODE_ENV=test gulp test",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov  | coveralls",
-    "test:client": "karma start"
+    "test:client": "karma start",
+    "seed:answers": "mongoimport --db cards-for-humanity --collection answers --file ./app/seeds/answers.json",
+    "seed:questions": "mongoimport --db cards-for-humanity --collection questions --file ./app/seeds/questions.json",
+    "seed:db": "npm run seed:answers & npm run seed:questions"
   },
   "dependencies": {
     "async": "~0.2.9",
@@ -74,13 +77,13 @@
     "eslint": "^4.9.0",
     "eslint-config-airbnb-base": "^12.0.2",
     "eslint-plugin-import": "^2.7.0",
-    "grunt": "~0.4.1",
     "grunt-concurrent": "~0.4.0",
     "grunt-contrib-jshint": "~0.6.4",
     "grunt-contrib-sass": "~0.5.0",
     "grunt-contrib-watch": "~0.5.3",
     "grunt-mocha-test": "~0.7.0",
     "grunt-nodemon": "~0.1.1",
+    "gulp-autoprefixer": "^4.0.0",
     "jasmine": "^2.8.0",
     "karma": "^1.7.1",
     "karma-chrome-launcher": "^2.2.0",

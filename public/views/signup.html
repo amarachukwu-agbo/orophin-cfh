@@ -12,7 +12,7 @@
         <ul class="navbar-nav snip">
 
           <li class="nav-item active">
-            <a class="nav-link" href="signin">Sign In
+            <a class="nav-link" href="#!/signin">Sign In
               <span class="sr-only">
                 (current)</span>
             </a>
@@ -27,8 +27,8 @@
       <div class="col-md-6 offset-md-3">
         <form class="z-depth-4 auth-form-style" ng-submit="signUp()" method="post">
           <h2 class="form-header">Sign Up</h2>
-          <div class='sign-error'>
-            {{ errorMessage }}
+          <div id="auth-error" ng-show="errorMessage">
+              <i class="fa fa-exclamation-triangle"></i> &nbsp; {{ errorMessage }}
           </div>
           <div class="md-form">
             <i class="material-icons prefix">account_circle</i>
@@ -37,7 +37,7 @@
           </div>
           <div class="md-form">
             <i class="material-icons prefix">email</i>
-            <input class="form-control" id="email" type="email" name="email" ng-model="data.email" required novalidate />
+            <input class="form-control" id="email" type="text" name="email" ng-model="data.email" required novalidate />
             <label for="email">Email</label>
           </div>
           <div class="md-form">
@@ -57,22 +57,22 @@
           <div class="sign-btn-wrapper">
             <button class="btn form-button" type='submit'>SignUp</button>
             <p class="text-right">Have an account?
-              <a href="signin">Signin</a>
+              <a href="#!/signin">Signin</a>
             </p>
           </div>
 
           <div class="oauth-auth">
             <p>or Signup with</p>
-            <a href="/auth/twitter" class="btn btn-social-icon btn-twitter">
+            <a href="/auth/twitter" class="btn btn-twitter">
               <span class="fa fa-twitter"></span>
             </a>
-            <a href="/auth/facebook" class="btn btn-social-icon btn-facebook">
+            <a href="/auth/facebook" class="btn btn-facebook">
               <span class="fa fa-facebook"></span>
             </a>
-            <a href="/auth/github" class="btn btn-social-icon btn-github">
+            <a href="/auth/github" class="btn btn-github">
               <span class="fa fa-github"></span>
             </a>
-            <a href="/auth/google" class="btn btn-social-icon btn-google">
+            <a href="/auth/google" class="btn btn-google">
               <span class="fa fa-google"></span>
             </a>
           </div>

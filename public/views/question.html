@@ -1,22 +1,25 @@
 <div id="question-container-inner">
-  <div class="card longBlack">
+  <div class="card longBlack question-card bg-color">
     <span ng-bind-html-unsafe="game.curQuestion.text" ng-hide="game.state === 'game ended' || game.state ==='game dissolved' || game.state === 'awaiting players'"></span>
 
     <div id="notifications" ng-if="game.notification" ng-animate="{enter:'animated fadeInLeft', leave:'animated fadeOut'}">{{game.notification}}</div>
 
     <div id="startGame" ng-show="game.state === 'awaiting players'">
-      <div id="finding-players">Finding Players</div>
-      <div id="player-count-container">
-        <div id="player-count">{{game.players.length}} / 6 </div>
-        <div id="the-word-players"> Players </div>
-      </div>
-      <div id="loading-container">
-        <div id="loading-gif"><img ng-src="../img/loader.gif"/></div>
-      </div>
-      <div id="start-game-container" ng-click="startGame()" ng-show="(game.playerIndex === 0 || game.joinOverride) && game.players.length >= game.playerMinLimit">
-        <div id='start-game-button'>
-          Start Game</br>with {{game.players.length}} players
+      <div id="finding-players" class="d-flex text-left align-items-center" style="margin:0">Finding Players
+        <div id="loading-container" class="d-flex align-items-center justify-content-center col-xs-4 col-sm-4 col-md-2 col-lg-2">
+          <div id="loading-gif" style="margin:0"><img ng-src="../img/loader.gif"/></div>
         </div>
+      </div>
+      <div class="d-flex align-items-center">
+        <div id="player-count-container">
+            <div id="player-count" class="text-left">{{game.players.length}} / 6 </div>
+            <div id="the-word-players" class="text-left"> Players </div>
+          </div>
+          <div id="start-game-container" ng-click="showStartGameModal()" ng-show="(game.playerIndex === 0 || game.joinOverride)">
+            <div class="btn btn-color">
+              Start Game
+            </div>
+          </div>
       </div>
     </div>
     <!-- Game Over Stuff -->
@@ -34,5 +37,43 @@
       </div>
     </div>
   </div>
-</div>
+
+  <div id="startGameModal" class="modal fade ">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Cards For Humanity</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Start the game with {{game.players.length}} players?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-color" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-color" ng-click="startGame()">Start Game</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="notEnoughPlayersModal" class="modal fade ">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Cards For Humanity</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          {{game.players.length}} player(s) available for this game. You cannot start the game at this time you need a minimum of 3 players to start.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-color" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
 
