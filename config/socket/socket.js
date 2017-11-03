@@ -80,8 +80,10 @@ module.exports = function(io) {
 
   var joinGame = function (socket, data) {
     const player = new Player(socket);
-    const decodedToken = decodeToken(data.token);
-    data.userID = decodedToken.user._id;
+    if (data.token !== null) {
+      const decodedToken = decodeToken(data.token);
+      data.userID = decodedToken.user._id;
+    }
     data = data || {};
     player.userID = data.userID || 'unauthenticated';
     if (data.userID !== 'unauthenticated') {
