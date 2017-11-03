@@ -1,25 +1,27 @@
 <div id="question-container-inner">
   <div class="card longBlack question-card bg-color">
     <span ng-bind-html-unsafe="game.curQuestion.text" ng-hide="game.state === 'game ended' || game.state ==='game dissolved' || game.state === 'awaiting players'"></span>
-
+    <div ng-show="isCzar() === false && game.state === 'czar pick card'" style="text-align:center">CZAR is Selecting Card. Please Wait...</div>
     <div id="notifications" ng-if="game.notification" ng-animate="{enter:'animated fadeInLeft', leave:'animated fadeOut'}">{{game.notification}}</div>
 
     <div id="startGame" ng-show="game.state === 'awaiting players'">
       <div id="finding-players" class="d-flex text-left align-items-center" style="margin:0">Finding Players
         <div id="loading-container" class="d-flex align-items-center justify-content-center col-xs-4 col-sm-4 col-md-2 col-lg-2">
-          <div id="loading-gif" style="margin:0"><img ng-src="../img/loader.gif"/></div>
+          <div id="loading-gif" style="margin:0">
+            <img ng-src="../img/loader.gif" />
+          </div>
         </div>
       </div>
       <div class="d-flex align-items-center">
         <div id="player-count-container">
-            <div id="player-count" class="text-left">{{game.players.length}} / 6 </div>
-            <div id="the-word-players" class="text-left"> Players </div>
+          <div id="player-count" class="text-left">{{game.players.length}} / 6 </div>
+          <div id="the-word-players" class="text-left"> Players </div>
+        </div>
+        <div id="start-game-container" ng-click="showStartGameModal()" ng-show="(game.playerIndex === 0 || game.joinOverride)">
+          <div class="btn btn-color">
+            Start Game
           </div>
-          <div id="start-game-container" ng-click="startGame()" ng-show="(game.playerIndex === 0 || game.joinOverride) && game.players.length >= game.playerMinLimit">
-            <div class="btn btn-color">
-              Start Game
-            </div>
-          </div>
+        </div>
       </div>
     </div>
     <!-- Game Over Stuff -->
@@ -29,7 +31,9 @@
         Our sincere apologies.
       </div>
       <div ng-show="game.state === 'game ended' && game.gameWinner === game.playerIndex">
-        <div class="game-end-headline">Congratulations! You won the game, {{game.players[game.playerIndex].username | upperFirstLetter}}!</div>We hope you feel special. If you'd like to share that special feeling with the world, consider donating to charity. Or just horde it all for youself.
+        <div class="game-end-headline">Congratulations! You won the game, {{game.players[game.playerIndex].username | upperFirstLetter}}!</div>We hope you
+        feel special. If you'd like to share that special feeling with the world, consider donating to charity. Or just horde
+        it all for youself.
       </div>
       <div ng-show="game.state === 'game ended' && game.gameWinner !== game.playerIndex">
         <div class="game-end-headline">Aw, shucks! {{game.players[game.gameWinner].username | upperFirstLetter }} won the game!</div>
@@ -37,27 +41,73 @@
       </div>
     </div>
   </div>
-  <div class="modal fade czar-madal" id="czarSelectCard" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
-  data-backdrop="false">
-  <div class="modal-dialog " role="document"><!--modal-center modal-notify modal-info-->
-    <!--Content-->
+  <div class="modal fade czar-madal z-depth-5" id="czarSelectCard" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+    data-backdrop="false">
+    <div class="modal-dialog modal-lg" role="document">
+      <!--modal-center modal-notify modal-info-->
+      <!--Content-->
+      <div class="modal-content">
+        <!--Body-->
+        <div class="czar-modal-head">
+          <h3>You are CZAR</h3>
+          <p>Select a card to start game.</p>
+        </div>
+        <div class="modal-body">
+          <div class="row d-flex justify-content-center align-items-center">
+            <ul class="czars-card" ng-click="shuffleCards($event)" id="czars-cards">
+              <li>
+                <img id="card1" class="card" src="../img/card-czar.png" alt="czar card">
+              </li>
+              <li>
+                <img id="card2" class="card" src="../img/card-czar.png" alt="czar card">
+              </li>
+              <li>
+                <img id="card3" class="card" src="../img/card-czar.png" alt="czar card">
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="startGameModal" class="modal fade ">
+  <div class="modal-dialog">
     <div class="modal-content">
-      <!--Body-->
-      <div class="czar-modal-head">
-        <h3>You are CZAR</h3>
-        <p>Select a card to start game.</p>
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Cards For Humanity</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
       <div class="modal-body">
-         <div class="row d-flex justify-content-center align-items-center">
-          <ul class="czars-card" ng-click="shuffleCards($event)" id="czars-cards">
-            <li><img id="card1" class="card" src="../img/card-czar.png" alt="czar card"></li>
-            <li><img id="card2" class="card"  src="../img/card-czar.png" alt="czar card"></li>
-            <li><img id="card3" class="card"  src="../img/card-czar.png" alt="czar card"></li>
-          </ul>
-        </div>
+        Start the game with {{game.players.length}} players?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-color" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-color" ng-click="startGame()">Start Game</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="notEnoughPlayersModal" class="modal fade ">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Cards For Humanity</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {{game.players.length}} player(s) available for this game. You cannot start the game at this time you need a minimum of 3
+        players to start.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-color" data-dismiss="modal">Close</button>
+      </div>
     </div>
   </div>
 </div>
 </div>
-</div>
-
