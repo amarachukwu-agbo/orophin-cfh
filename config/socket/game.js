@@ -131,12 +131,34 @@ Game.prototype.prepareGame = function() {
       self.startGame();
     });
 };
+Game.prototype.beginGame = function(self){
+  if (this.state === 'czar pick card'){
+    // this.state = 'waiting for czar to select black card';
+    this.stateChoosing(self);
+  }else if (this.state === 'czar has left'){
+    this.assignCzar(self);
+  }
+}
+
+Game.prototype.assignCzar = function (self) {
+  self.state = 'czar pick card';
+  self.table = [];
+  if (self.czar >= self.players.length - 1) {
+    self.czar = 0;
+  } else {
+    self.czar += 1;
+  }
+  self.sendUpdate();
+};
 
 Game.prototype.startGame = function() {
   console.log(this.gameID,this.state);
   this.shuffleCards(this.questions);
   this.shuffleCards(this.answers);
-  this.stateChoosing(this);
+  // this.stateChoosing(this);
+  this.assignCzar(this);
+  this.sendUpdate();
+
 };
 
 Game.prototype.sendUpdate = function() {
@@ -159,11 +181,11 @@ Game.prototype.stateChoosing = function(self) {
   self.round++;
   self.dealAnswers();
   // Rotate card czar
-  if (self.czar >= self.players.length - 1) {
-    self.czar = 0;
-  } else {
-    self.czar++;
-  }
+  // if (self.czar >= self.players.length - 1) {
+  //   self.czar = 0;
+  // } else {
+  //   self.czar++;
+  // }
   self.sendUpdate();
 
   self.choosingTimeout = setTimeout(function() {
@@ -216,7 +238,8 @@ Game.prototype.stateResults = function(self) {
     if (winner !== -1) {
       self.stateEndGame(winner);
     } else {
-      self.stateChoosing(self);
+      self.assignCzar(self)
+      // self.stateChoosing(self);
     }
   }, self.timeLimits.stateResults*1000);
 };

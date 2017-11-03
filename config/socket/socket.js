@@ -47,7 +47,9 @@ module.exports = function(io) {
       exitGame(socket);
       joinGame(socket,data);
     });
-
+    socket.on('czarSelectCard', function(){
+      allGames[socket.gameID].beginGame(allGames[socket.gameID]);
+    });
     socket.on('startGame', function() {
       if (allGames[socket.gameID]) {
         var thisGame = allGames[socket.gameID];

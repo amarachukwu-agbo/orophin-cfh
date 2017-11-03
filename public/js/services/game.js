@@ -137,6 +137,18 @@ angular.module('mean.system')
     if (newState || game.curQuestion !== data.curQuestion) {
       game.state = data.state;
     }
+//added this
+    if (data.state === 'czar pick card') {
+      game.czar = data.czar;
+      if (game.czar === game.playerIndex){
+        addToNotificationQueue(
+          `You are now a Czar, 
+          select black to show new question`
+        );
+      }else {
+        addToNotificationQueue('Waiting for Czar to pick card');
+      }
+    }
 
     if (data.state === 'waiting for players to pick') {
       game.czar = data.czar;
@@ -188,6 +200,10 @@ angular.module('mean.system')
   game.startGame = function() {
     socket.emit('startGame');
   };
+
+  game.beginGame = function(){
+    socket.emit('czarSelectCard');
+  }
 
   game.leaveGame = function() {
     game.players = [];

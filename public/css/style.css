@@ -1251,3 +1251,27 @@ li {
      margin: 0 0 0 4px;
   }
 }
+
+
+.czars-card img{
+  max-height: 200px;
+  max-width: 200px;
+}
+.modal-body .czars-card{
+  display: flex;
+  overflow: scroll;
+}
+
+.modal-body .czars-card:hover{
+  cursor: pointer;
+}
+.czar-madal {
+  margin-top: 105px;
+}
+.czar-madal .czar-modal-head {
+  text-align:center;
+}
+.czar-madal .czar-modal-head h3{
+  color: #782149;
+  font-family:'Bree Serif', serif;
+}
