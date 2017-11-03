@@ -1260,7 +1260,7 @@ li {
 }
 .modal-body .czars-card{
   display: flex;
-  overflow: scroll;
+  /* overflow: scroll; */
 }
 
 .modal-body .czars-card:hover{
