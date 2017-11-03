@@ -1,11 +1,14 @@
 /**
  * Module dependencies.
  */
+const dotenv = require('dotenv');
+const nodemailer = require('nodemailer');
 const mongoose = require('mongoose'),
   User = mongoose.model('User');
 const avatars = require('./avatars').all();
 const generateToken = require('../helpers/generateToken');
 
+dotenv.load();
 // Auth callback
 exports.authCallback = (req, res) => {
   if (!req.user) {
@@ -104,6 +107,58 @@ exports.create = (req, res) => {
       }
     });
   }
+};
+
+
+// Search users controller
+exports.searchUser = (req, res) => {
+  const searchTerm = req.query.q;
+  if (searchTerm === '') {
+    return res.json({
+      message: 'Enter a value'
+    });
+  }
+  User.find({ name: new RegExp(searchTerm, 'i') }).exec((error, users) => {
+    if (error) {
+      return res.json(error);
+    }
+    if (users.length === 0) {
+      return res.json({
+        message: 'No user found'
+      });
+    }
+    return res.json(users);
+  });
+};
+
+// invite user controller
+exports.inviteUser = (req, res) => {
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.USERNAME,
+      pass: process.env.PASSWORD
+    }
+  });
+  const mailOptions = {
+    from: '"Cards for Humanity" <notification@cfh.com>',
+    to: req.body.mailTo,
+    subject: 'Invitation to join a session of cfh',
+    text: `Click the link to join game: ${req.body.gameLink}`,
+    html: `<b>click the link to join game: ${req.body.gameLink}</b>`
+  };
+
+  transporter.sendMail(mailOptions, (error) => {
+    if (error) {
+      res.json({
+        message: 'Error occured'
+      });
+    } else {
+      res.json({
+        message: 'Message sent'
+      });
+    }
+  });
 };
 
 // Assign avatar to use
