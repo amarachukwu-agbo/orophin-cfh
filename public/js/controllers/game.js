@@ -158,7 +158,7 @@ angular.module('mean.system')
 
     //
     $scope.searchUser = () => {
-      const searchTerm = $scope.searchTerm;
+      const { searchTerm } = $scope;
       $scope.searchResult = [];
       if (searchTerm.length !== 0) {
         $http({
@@ -166,7 +166,7 @@ angular.module('mean.system')
           url: `/api/search/users?q=${searchTerm}`
         }).then((response) => {
           if (response.data) {
-            response.data.forEach(user => {
+            response.data.forEach((user) => {
               $scope.searchResult.push(user);
             });
           }
@@ -188,9 +188,7 @@ angular.module('mean.system')
       $scope.searchTerm = '';
     };
 
-    $scope.isInvited = (email) => {
-      return $scope.invitedUsers.indexOf(email) > -1;
-    };
+    $scope.isInvited = email => $scope.invitedUsers.indexOf(email) > -1;
     // Catches changes to round to update when no players pick card
     // (because game.state remains the same)
     $scope.$watch('game.round', function () {
