@@ -3,6 +3,7 @@ var Player = require('./player');
 require("console-stamp")(console, "m/dd HH:MM:ss");
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
+const decodeToken = require('../../app/helpers/decodeToken');
 
 var avatars = require(__dirname + '/../../app/controllers/avatars.js').all();
 // Valid characters to use to generate random private game IDs
@@ -77,34 +78,37 @@ module.exports = function(io) {
     });
   });
 
-  var joinGame = function(socket,data) {
-    var player = new Player(socket);
+  var joinGame = function (socket, data) {
+    const player = new Player(socket);
+    if (data.token !== null) {
+      const decodedToken = decodeToken(data.token);
+      data.userID = decodedToken.user._id;
+    }
     data = data || {};
     player.userID = data.userID || 'unauthenticated';
     if (data.userID !== 'unauthenticated') {
       User.findOne({
         _id: data.userID
-      }).exec(function(err, user) {
+      }).exec((err, user) => {
         if (err) {
-          console.log('err',err);
           return err; // Hopefully this never happens.
         }
         if (!user) {
           // If the user's ID isn't found (rare)
           player.username = 'Guest';
-          player.avatar = avatars[Math.floor(Math.random()*4)+12];
+          player.avatar = avatars[Math.floor(Math.random() * 4) + 12];
         } else {
           player.username = user.name;
           player.premium = user.premium || 0;
-          player.avatar = user.avatar || avatars[Math.floor(Math.random()*4)+12];
+          player.avatar = user.avatar || avatars[Math.floor(Math.random() * 4) + 12];
         }
-        getGame(player,socket,data.room,data.createPrivate);
+        getGame(player, socket, data.room, data.createPrivate);
       });
     } else {
       // If the user isn't authenticated (guest)
       player.username = 'Guest';
-      player.avatar = avatars[Math.floor(Math.random()*4)+12];
-      getGame(player,socket,data.room,data.createPrivate);
+      player.avatar = avatars[Math.floor(Math.random() * 4) + 12];
+      getGame(player, socket, data.room, data.createPrivate);
     }
   };
 

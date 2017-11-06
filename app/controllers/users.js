@@ -89,7 +89,7 @@ exports.create = (req, res) => {
             });
           } else if (!err) {
             const userData = {
-              id: user.id
+              _id: user.id
             };
             return res.status(201).send({
               message: 'User Account Created Successfully',
