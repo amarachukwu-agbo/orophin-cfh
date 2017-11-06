@@ -151,32 +151,29 @@ angular.module('mean.system')
             if(response.data) {
             response.data.forEach( user => {
               $scope.searchResult.push(user);
-            })
+            });
           }
-        })
-       } else {
-         $scope.searchResult = [];
-       }
-      };
+        });
+      } else {
+        $scope.searchResult = [];
+      }
+    };
 
     $scope.inviteUser = (email) => {
       $scope.invitedUsers.push(email);
-        return $http.post('/api/users/invite', {
-          mailTo: email,
-          gameLink: document.URL
-        });
+      return $http.post('/api/users/invite', {
+        mailTo: email,
+        gameLink: document.URL
+      });
     };
 
     $scope.resetSearchTerm = () => {
-      console.log($scope.searchTerm);
       $scope.searchTerm = '';
     };
 
     $scope.isInvited = (email) => {
       return $scope.invitedUsers.indexOf(email) > -1;
     };
-      
-
     // Catches changes to round to update when no players pick card
     // (because game.state remains the same)
     $scope.$watch('game.round', function () {
