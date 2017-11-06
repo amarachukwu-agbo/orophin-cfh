@@ -141,7 +141,7 @@ angular.module('mean.system')
 
     $scope.shuffleCards = function (e) {
       if ($scope.isCzar()) {
-        const card = $('#' + e.target.id);
+        const card = $('#'+e.target.id);
         card.addClass('animated flipOutY');
         setTimeout(() => {
           $scope.beginGame();
