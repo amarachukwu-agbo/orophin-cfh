@@ -1,14 +1,12 @@
 /**
  * Module dependencies.
  */
-const dotenv = require('dotenv');
 const nodemailer = require('nodemailer');
 const mongoose = require('mongoose'),
   User = mongoose.model('User');
 const avatars = require('./avatars').all();
 const generateToken = require('../helpers/generateToken');
 
-dotenv.load();
 // Auth callback
 exports.authCallback = (req, res) => {
   if (!req.user) {
@@ -141,7 +139,7 @@ exports.inviteUser = (req, res) => {
     }
   });
   const mailOptions = {
-    from: '"Cards for Humanity" <teamorophincfh@gmail.com>',
+    from: 'Cards for Humanity',
     to: req.body.mailTo,
     subject: 'Invitation to join a session of cfh',
     text: `Click the link to join game: ${req.body.gameLink}`,

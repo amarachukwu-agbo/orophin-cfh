@@ -10,7 +10,7 @@ const inviteEndpoint = '/api/users/invite';
 // let users;
 
 describe('Users search test', () => {
-  it('should return Enter a value', (done) => {
+  it('should return Enter a value when no search value is entered', (done) => {
     request.get(`${searchEndpoint}?q=`)
       .end((err, res) => {
         expect(res.status).to.equal(404);
@@ -34,7 +34,7 @@ describe('Users search test', () => {
         done();
       });
   });
-  it('should return no users found', (done) => {
+  it('should return no users found when user does not exist', (done) => {
     request.get(`${searchEndpoint}?q=zzzzz`)
       .end((err, res) => {
         expect(res.status).to.equal(404);
