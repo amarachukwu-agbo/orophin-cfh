@@ -46,11 +46,18 @@
             <label for="password">Password</label>
           </div>
           <div id="contain-avatars">
-            <ul ng-controller="IndexController" class="avatar-list">
+            <ul class="avatar-list">
               <li ng-repeat="avatar in avatars" class="avatars ng-scope">
-                <input name="avatar" type='radio' value="{{$index}}">
-                <img ng-src="{{avatar}}" class="avatar-image">
-                </input>
+                <input 
+                  name="avatar" 
+                  type='radio' 
+                  ng-model="data.avatar"   
+                  value="{{avatar}}"  
+                  id="{{'avatar' + $index}}" 
+                />
+                <label for="{{'avatar' + $index}}">
+                  <img ng-src="{{avatar}}" class="avatar-image">
+                </label>
               </li>
             </ul>
           </div>

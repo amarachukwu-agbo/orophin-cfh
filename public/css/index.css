@@ -335,10 +335,11 @@ div#charity-widget-container {
 
 #social-bar-container {
   width: 100% !important;
-  height: 100% !important;
+  height: 50% !important;
   position: absolute !important;
   right: 0 !important;
-  top: 0px !important; }
+  top: 0px !important;
+  overflow-y: scroll; }
 
 .game-screen-body {
   height: 90vh;

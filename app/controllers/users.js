@@ -1,6 +1,7 @@
 /**
  * Module dependencies.
  */
+const nodemailer = require('nodemailer');
 const mongoose = require('mongoose'),
   User = mongoose.model('User');
 const avatars = require('./avatars').all();
@@ -77,8 +78,6 @@ exports.create = (req, res) => {
     }).exec((err, existingUser) => {
       if (!existingUser) {
         const user = new User(req.body);
-        // Switch the user's avatar index to an actual avatar url
-        user.avatar = avatars[user.avatar];
         user.provider = 'local';
         user.save((err) => {
           if (err) {
@@ -88,7 +87,7 @@ exports.create = (req, res) => {
             });
           } else if (!err) {
             const userData = {
-              _id: user.id
+              _id: user._id
             };
             return res.status(201).send({
               message: 'User Account Created Successfully',
@@ -104,6 +103,58 @@ exports.create = (req, res) => {
       }
     });
   }
+};
+
+
+// Search users controller
+exports.searchUser = (req, res) => {
+  const searchTerm = req.query.q;
+  if (searchTerm === '') {
+    return res.status(404).json({
+      message: 'Enter a value'
+    });
+  }
+  User.find({ name: new RegExp(searchTerm, 'i') }).exec((error, users) => {
+    if (error) {
+      return res.json(error);
+    }
+    if (users.length === 0) {
+      return res.status(404).json({
+        message: 'No user found'
+      });
+    }
+    return res.json(users);
+  });
+};
+
+// invite user controller
+exports.inviteUser = (req, res) => {
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.USERNAME,
+      pass: process.env.PASSWORD
+    }
+  });
+  const mailOptions = {
+    from: 'Cards for Humanity',
+    to: req.body.mailTo,
+    subject: 'Invitation to join a session of cfh',
+    text: `Click the link to join game: ${req.body.gameLink}`,
+    html: `<b>click the link to join game: ${req.body.gameLink}</b>`
+  };
+
+  transporter.sendMail(mailOptions, (error) => {
+    if (error) {
+      res.status(400).json({
+        message: 'An error occured while trying to send your mail'
+      });
+    } else {
+      res.status(200).json({
+        message: 'Message sent successfully'
+      });
+    }
+  });
 };
 
 // Assign avatar to use
