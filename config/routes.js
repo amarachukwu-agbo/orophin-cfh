@@ -12,7 +12,7 @@ const loginValidation = require('./middlewares/loginValidation');
 const signupValidation = require('./middlewares/signupValidation');
 
 
-const routes = (app, passport, auth) => {
+const routes = (app, passport) => {
   // User Routes
   app.get('/signin', users.signin);
   app.get('/signup', users.signup);
@@ -36,6 +36,12 @@ const routes = (app, passport, auth) => {
   // Signup route
   app.post('/api/auth/signup', signupValidation, users.create);
   app.post('/users/avatars', users.avatars);
+
+  // Search users route
+  app.get('/api/search/users', users.searchUser);
+
+  // Invite users route
+  app.post('/api/users/invite', users.inviteUser);
 
   // Setting the facebook oauth routes
   app.get('/auth/facebook', passport.authenticate('facebook', {
