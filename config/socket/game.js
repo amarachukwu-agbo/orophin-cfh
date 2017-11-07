@@ -27,7 +27,7 @@ function Game(gameID, io) {
   this.winnerAutopicked = false;
   this.czar = -1; // Index in this.players
   this.playerMinLimit = 3;
-  this.playerMaxLimit = 6;
+  this.playerMaxLimit = 12;
   this.pointLimit = 5;
   this.state = "awaiting players";
   this.round = 0;
@@ -131,12 +131,32 @@ Game.prototype.prepareGame = function() {
       self.startGame();
     });
 };
+Game.prototype.beginGame = function (self) {
+  if (this.state === 'czar pick card') {
+    this.stateChoosing(self);
+  } else if (this.state === 'czar has left') {
+    this.assignCzar(self);
+  }
+};
+
+Game.prototype.assignCzar = function (self) {
+  self.state = 'czar pick card';
+  self.table = [];
+  if (self.czar >= self.players.length - 1) {
+    self.czar = 0;
+  } else {
+    self.czar += 1;
+  }
+  self.sendUpdate();
+};
 
 Game.prototype.startGame = function() {
   console.log(this.gameID,this.state);
   this.shuffleCards(this.questions);
   this.shuffleCards(this.answers);
-  this.stateChoosing(this);
+  this.assignCzar(this);
+  this.sendUpdate();
+
 };
 
 Game.prototype.sendUpdate = function() {
@@ -145,7 +165,6 @@ Game.prototype.sendUpdate = function() {
 
 Game.prototype.stateChoosing = function(self) {
   self.state = "waiting for players to pick";
-  // console.log(self.gameID,self.state);
   self.table = [];
   self.winningCard = -1;
   self.winningCardPlayer = -1;
@@ -158,12 +177,6 @@ Game.prototype.stateChoosing = function(self) {
   }
   self.round++;
   self.dealAnswers();
-  // Rotate card czar
-  if (self.czar >= self.players.length - 1) {
-    self.czar = 0;
-  } else {
-    self.czar++;
-  }
   self.sendUpdate();
 
   self.choosingTimeout = setTimeout(function() {
@@ -180,14 +193,12 @@ Game.prototype.selectFirst = function() {
     this.winnerAutopicked = true;
     this.stateResults(this);
   } else {
-    // console.log(this.gameID,'no cards were picked!');
     this.stateChoosing(this);
   }
 };
 
 Game.prototype.stateJudging = function(self) {
   self.state = "waiting for czar to decide";
-  // console.log(self.gameID,self.state);
 
   if (self.table.length <= 1) {
     // Automatically select a card if only one card was submitted
@@ -216,7 +227,7 @@ Game.prototype.stateResults = function(self) {
     if (winner !== -1) {
       self.stateEndGame(winner);
     } else {
-      self.stateChoosing(self);
+      self.assignCzar(self);
     }
   }, self.timeLimits.stateResults*1000);
 };

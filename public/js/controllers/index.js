@@ -53,13 +53,6 @@ angular.module('mean.system')
         return false;
       };
 
-      $scope.avatars = [];
-      AvatarService.getAvatars()
-        .then((data) => {
-          $scope.avatars = data;
-        });
-
-
       const onAuthSuccessful = (response) => {
         if (response.data.token) {
           // add token to localstorage
@@ -80,7 +73,7 @@ angular.module('mean.system')
         $scope.errorMessage = err.data.message;
         // clear error message  after 5 seconds
         setTimeout(() => {
-          $scope.error = '';
+          $scope.errorMessage = '';
         }, 5000);
       };
 
@@ -100,7 +93,7 @@ angular.module('mean.system')
 
       // function to signup user
       $scope.signUp = () => {
-        if ($scope.data.name && $scope.data.email && $scope.data.password) {
+        if ($scope.data.name && $scope.data.email && $scope.data.password && $scope.data.avatar) {
           $http.post('/api/auth/signup', JSON.stringify($scope.data))
             .then(
               // success callback
@@ -108,18 +101,29 @@ angular.module('mean.system')
               // error callback
               onError
             );
+        } else {
+          // set error message
+          $scope.errorMessage = 'all fields are required';
+          // clear error message  after 5 seconds
+          setTimeout(() => {
+            $scope.errorMessage = '';
+          }, 5000);
         }
       };
 
-      // function to signup user
+      // function to signout user
       $scope.signOut = () => {
-        // clear token from cookies
-        angular.forEach($cookies, (v, k) => {
-          $cookieStore.remove(k);
+        // make signout http request
+        $http.get('/signout').success(() => {
+          // clear token from cookies
+          angular.forEach($cookies, (v, k) => {
+            $cookieStore.remove(k);
+          });
+          // clear token from local storage
+          $window.localStorage.removeItem('token');
+          $location.path('/');
+          $window.location.reload();
         });
-        // clear token from localStorage
-        $window.localStorage.clear();
-        $location.path('/#!');
       };
 
       $scope.avatars = [];

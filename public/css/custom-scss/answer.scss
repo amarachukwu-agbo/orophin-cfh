@@ -5,7 +5,7 @@
 #social-bar-container {
   top:100px !important;
 }
-#lobby-how-to-play{
+#to-play{
   font-size: 30px !important;
 }
 #oh-el{
@@ -24,6 +24,11 @@
   height: inherit;
   flex-direction: row;
   height: 90% !important;
+  overflow-x: scroll;
+  justify-content: center;
+  align-items: stretch;
+  padding: 0 .5em;
+  width: fit-content !important;
 }
 #cards-container,
 #info-container,
@@ -42,7 +47,7 @@ div#charity-widget-container{
   margin-top: 20px;
 }
 #charity-widget-container{
-  margin-top: 0 !important;
+  margin-top: -50px !important;
 }
 #crDonateWidget_cfhio_cards4humanity{
   margin: 0 auto;

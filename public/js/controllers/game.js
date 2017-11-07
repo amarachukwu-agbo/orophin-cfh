@@ -1,3 +1,4 @@
+/* global introJs, localStorage */
 angular.module('mean.system')
   .controller('GameController', ['$scope', 'game', '$http', '$timeout', '$location', 'MakeAWishFactsService', '$dialog', '$window', function ($scope, game, $http, $timeout, $location, MakeAWishFactsService, $dialog, $window) {
     $scope.hasPickedCards = false;
@@ -6,6 +7,8 @@ angular.module('mean.system')
     $scope.modalShown = false;
     $scope.game = game;
     $scope.pickedCards = [];
+    $scope.searchTerm = '';
+    $scope.invitedUsers = [];
     var makeAWishFacts = MakeAWishFactsService.getMakeAWishFacts();
     $scope.makeAWishFact = makeAWishFacts.pop();
 
@@ -133,10 +136,61 @@ angular.module('mean.system')
       game.startGame();
     };
 
+    $scope.beginGame = function () {
+      game.beginGame();
+    };
+
+    $scope.shuffleCards = function (e) {
+      if ($scope.isCzar()) {
+        const card = $('#'+e.target.id);
+        card.addClass('animated flipOutY');
+        setTimeout(() => {
+          $scope.beginGame();
+          card.removeClass('animated flipOutY');
+          $('#czarSelectCard').modal('hide');
+        }, 700);
+      }
+    };
+
     $scope.abandonGame = function () {
       game.leaveGame();
       $location.path('/');
     };
+
+    //
+    // $scope.searchUser = () => {
+    //   const { searchTerm } = $scope;
+    //   console.log('hjgvj,bkujbkjbm k,');
+    //   $scope.searchResult = [];
+    //   if (searchTerm.length !== 0) {
+    //     $http({
+    //       method: 'GET',
+    //       url: `/api/search/users?q=${$scope.searchTerm}`
+    //     }).then((response) => {
+    //       if (response.data) {
+    //         response.data.forEach((user) => {
+    //           $scope.searchResult.push(user);
+    //         });
+    //       }
+    //     });
+    //   } else {
+    //     $scope.searchResult = [];
+    //   }
+    // };
+
+    // $scope.inviteUser = (email) => {
+    //   $scope.invitedUsers.push(email);
+    //   return $http.post('/api/users/invite', {
+    //     mailTo: email,
+    //     gameLink: document.URL
+    //   });
+    // };
+
+    // $scope.resetSearchTerm = () => {
+    //   $scope.searchTerm = '';
+    // };
+
+    // $scope.isInvited = email => $scope.invitedUsers.indexOf(email) > -1;
 
     // Catches changes to round to update when no players pick card
     // (because game.state remains the same)
@@ -151,10 +205,15 @@ angular.module('mean.system')
       $scope.pickedCards = [];
     });
 
+
+
     // In case player doesn't pick a card in time, show the table
     $scope.$watch('game.state', function () {
       if (game.state === 'waiting for czar to decide' && $scope.showTable === false) {
         $scope.showTable = true;
+      }
+      if ($scope.isCzar() && game.state === 'czar pick card') {
+        $('#czarSelectCard').modal('show');
       }
     });
 
@@ -181,6 +240,67 @@ angular.module('mean.system')
       }
     });
 
+    $scope.gameTour = introJs();
+
+    $scope.gameTour.setOptions({
+      steps: [{
+        intro: 'Welcome to <img src="img/logo-2.png" height="40"> <br/> You want to play this game?, then let me take you on a quick tour.'
+      },
+      {
+        element: '#question-container-outer',
+        intro: 'Game needs a minimum of 3 players to start. Wait for the minimum number of players and start the game. Also when the game starts, the questions are displayed here.'
+      },
+      {
+        element: '#timer-container',
+        intro: 'You have 20 seconds to submit an answer. After time out, the CZAR selects his favorite answer. Whoever submits CZAR\'s favorite answer wins the round.'
+      },
+      {
+        element: '#player-container',
+        intro: 'Players in the current game are shown here'
+      },
+      {
+        element: '#game-rules',
+        intro: 'These are the rules of the game'
+      },
+      {
+        element: '#answer-card',
+        intro: 'When game start, the answer cards will be displayed here, then you can click on the funniest answer card relating to the question'
+      },
+      {
+        element: '#chat',
+        intro: 'Wish to chat with friend while playing game? You can chat with friends here'
+      },
+      {
+        element: '#charity-widget-container',
+        intro: 'Wish to help people in need? Click on this to donate'
+      },
+      {
+        element: '#tweet',
+        intro: 'Share game link with your followers via tweeter'
+      },
+      {
+        element: '#abandon-game-button',
+        intro: 'Played enough? Click this button to quit the game'
+      },
+      {
+        element: '#retake-tour',
+        intro: 'You can always take the tour again'
+      },
+      ]
+    });
+    $scope.takeTour = () => {
+      if (!localStorage.takenTour) {
+        const timeout = setTimeout(() => {
+          $scope.gameTour.start();
+          clearTimeout(timeout);
+        }, 500);
+        localStorage.setItem('takenTour', true);
+      }
+    };
+    $scope.retakeTour = () => {
+      localStorage.removeItem('takenTour');
+      $scope.takeTour();
+    };
     if ($location.search().game && !(/^\d+$/).test($location.search().game)) {
       game.joinGame('joinGame', $location.search().game);
     } else if ($location.search().custom) {
@@ -188,5 +308,4 @@ angular.module('mean.system')
     } else {
       game.joinGame();
     }
-
   }]);
