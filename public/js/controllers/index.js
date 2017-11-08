@@ -10,8 +10,6 @@ angular.module('mean.system')
     'game',
     'AvatarService',
     '$http',
-
-
     (
       $scope,
       $window,

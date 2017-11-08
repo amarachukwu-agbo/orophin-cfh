@@ -40,3 +40,25 @@ exports.createGameLog = (req, res) => {
     });
   }
 };
+
+/**
+ * @description retrieve user game log
+ * @param {object} req HTTP request object
+ * @param {object} res HTTP response object
+ * @return {*} void
+ */
+module.exports.getGameLog = (req, res) => {
+  Game.find({
+    userID: req.decoded.user._id
+  }).exec((err, getGameLog) => {
+    if (err) {
+      return res.status(500).json({ err });
+    } if (getGameLog.length === 0) {
+      return res.status(404).json({ message: 'User does not have any game record' });
+    }
+    return res.status(200).json({
+      message: 'User game-logs retrieved successfully',
+      getGameLog
+    });
+  });
+};

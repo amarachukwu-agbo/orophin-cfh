@@ -1,0 +1,130 @@
+<div landing ng-controller="IndexController">
+  <!-- Fixed Logo & Menu Bar Start -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <a class="navbar-brand" ng-href="/">
+      <img src="img/logo.png" height="50" class="d-inline-block align-top">
+    </a>
+    <div class="nav justify-content-end ml-auto">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav snip">
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#!/dashboard">Dashboard</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#!/app">Play Game</a>
+          </li>
+          <li class="nav-item active signout">
+            <a class="nav-link" ng-click="signOut()" ng-hide="showOptions">Sign Out</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Nav tabs -->
+  <div class="dashboard" ng-controller="DashboardController">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs nav-justified z-depth-1">
+      <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" ng-href="#panel1" target="_self" role="tab">GAME HISTORY</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" ng-href="#panel2" target="_self" role="tab">LEADERBOARD</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" ng-href="#panel3" target="_self" role="tab">DONATIONS</a>
+      </li>
+    </ul>
+    <!-- Tab panels -->
+    <div class="tab-content card">
+      <!--Panel 1-->
+      <div class="tab-pane fade in show active" id="panel1" role="tabpanel">
+        <br>
+        <!--Table-->
+        <table class="table table-font">
+
+          <!--Table head-->
+          <thead class="blue-grey lighten-4">
+            <tr>
+              <th>Game</th>
+              <th>Players</th>
+              <th>Rounds</th>
+              <th>Winner</th>
+            </tr>
+          </thead>
+          <!--Table head-->
+
+          <!--Table body-->
+          <tbody>
+            <tr ng-repeat="x in gameLogs">
+              <td>{{ x.gameID }}</td>
+              <td>{{ x.gamePlayers.join(",") }}</td>
+              <td>{{ x.gameRound }}</td>
+              <td>{{ x.gameWinner }}</td>
+            </tr>
+          </tbody>
+          <!--Table body-->
+        </table>
+        <p>{{GameLogMessage}}</p>
+
+      </div>
+      <!--/.Panel 1-->
+      <!--Panel 2-->
+      <div class="tab-pane fade" id="panel2" role="tabpanel">
+        <br>
+        <table class="table">
+
+          <!--Table head-->
+          <thead class="blue-grey lighten-4">
+            <tr>
+              <th>Name</th>
+              <th>Wins</th>
+            </tr>
+          </thead>
+          <!--Table head-->
+
+          <!--Table body-->
+          <tbody>
+            <tr ng-repeat="element in leaderBoards | orderBy:'-roundsWon'">
+              <td>{{ element.name }}</td>
+              <td>{{ element.roundsWon }}</td>
+            </tr>
+          </tbody>
+          <!--Table body-->
+        </table>
+        <p>{{LeaderBoardMessage}}</p>
+      </div>
+      <!--/.Panel 2-->
+      <!--Panel 3-->
+      <div class="tab-pane fade" id="panel3" role="tabpanel">
+        <br>
+        <table class="table">
+
+          <!--Table head-->
+          <thead class="blue-grey lighten-4">
+            <tr>
+              <th>Donations</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <!--Table head-->
+
+          <!--Table body-->
+          <tbody>
+            <tr ng-repeat="donation in donations | orderBy:'-date'">
+              <td>{{ donation.amount }}</td>
+              <td>{{ donation.date }}</td>
+            </tr>
+          </tbody>
+          <!--Table body-->
+        </table>
+        <p>{{DonationMessage}}</p>
+      </div>
+      <!--/.Panel 3-->
+    </div>
+  </div>

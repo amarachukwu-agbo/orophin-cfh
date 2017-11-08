@@ -4,6 +4,8 @@ const answers = require('../app/controllers/answers');
 const questions = require('../app/controllers/questions');
 const avatars = require('../app/controllers/avatars');
 const game = require('../app/controllers/game');
+const leaderBoard = require('../app/controllers/leaderBoard');
+const donation = require('../app/controllers/donations');
 const index = require('../app/controllers/index');
 const requiresToken = require('../app/middlewares/requiresToken');
 
@@ -102,6 +104,11 @@ const routes = (app, passport, auth) => {
 
   // Game route
   app.post('/api/games/:id/start', requiresToken.verifyUser, game.createGameLog);
+
+  // Dashboard routes
+  app.get('/api/games/history', requiresToken.verifyUser, game.getGameLog);
+  app.get('/api/leaderboard', requiresToken.verifyUser, leaderBoard.getLeaderBoard);
+  app.get('/api/donations', requiresToken.verifyUser, donation.getDonations);
 };
 
 module.exports = routes;

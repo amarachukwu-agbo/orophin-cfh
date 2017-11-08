@@ -88,7 +88,7 @@ exports.create = (req, res) => {
             });
           } else if (!err) {
             const userData = {
-              _id: user.id
+              _id: user._id
             };
             return res.status(201).send({
               message: 'User Account Created Successfully',
@@ -124,22 +124,23 @@ exports.avatars = (req, res) => {
 
 // Add donation
 exports.addDonation = (req, res) => {
-  if (req.body && req.user && req.user._id) {
+  if (req.body && req.user && req.decoded.user._id) {
     // Verify that the object contains crowdrise data
     if (req.body.amount && req.body.crowdrise_donation_id && req.body.donor_name) {
       User.findOne({
-        _id: req.user._id
+        _id: req.decoded.user._id
       })
         .exec((err, user) => {
           // Confirm that this object hasn't already been entered
           let duplicate = false;
-          for (let i = 0; i < user.donations.length; i++) {
+          for (let i = 0; i < user.donations.length; i += 1) {
             if (user.donations[i].crowdrise_donation_id === req.body.crowdrise_donation_id) {
               duplicate = true;
             }
           }
           if (!duplicate) {
             console.log('Validated donation');
+            user.donations.date = new Date();
             user.donations.push(req.body);
             user.premium = 1;
             user.save();
