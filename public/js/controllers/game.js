@@ -7,6 +7,8 @@ angular.module('mean.system')
     $scope.modalShown = false;
     $scope.game = game;
     $scope.pickedCards = [];
+    $scope.searchTerm = '';
+    $scope.invitedUsers = [];
     var makeAWishFacts = MakeAWishFactsService.getMakeAWishFacts();
     $scope.makeAWishFact = makeAWishFacts.pop();
 
@@ -155,6 +157,41 @@ angular.module('mean.system')
       $location.path('/');
     };
 
+    //
+    // $scope.searchUser = () => {
+    //   const { searchTerm } = $scope;
+    //   console.log('hjgvj,bkujbkjbm k,');
+    //   $scope.searchResult = [];
+    //   if (searchTerm.length !== 0) {
+    //     $http({
+    //       method: 'GET',
+    //       url: `/api/search/users?q=${$scope.searchTerm}`
+    //     }).then((response) => {
+    //       if (response.data) {
+    //         response.data.forEach((user) => {
+    //           $scope.searchResult.push(user);
+    //         });
+    //       }
+    //     });
+    //   } else {
+    //     $scope.searchResult = [];
+    //   }
+    // };
+
+    // $scope.inviteUser = (email) => {
+    //   $scope.invitedUsers.push(email);
+    //   return $http.post('/api/users/invite', {
+    //     mailTo: email,
+    //     gameLink: document.URL
+    //   });
+    // };
+
+    // $scope.resetSearchTerm = () => {
+    //   $scope.searchTerm = '';
+    // };
+
+    // $scope.isInvited = email => $scope.invitedUsers.indexOf(email) > -1;
+
     // Catches changes to round to update when no players pick card
     // (because game.state remains the same)
     $scope.$watch('game.round', function () {
@@ -167,6 +204,8 @@ angular.module('mean.system')
       }
       $scope.pickedCards = [];
     });
+
+
 
     // In case player doesn't pick a card in time, show the table
     $scope.$watch('game.state', function () {

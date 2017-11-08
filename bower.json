@@ -6,6 +6,7 @@
     "angular-ui-utils": "0.0.4",
     "jquery": "~1.9.1",
     "underscore": "~1.5.2",
+    "emojionearea": "^3.0.0",
     "intro.js": "^2.8.0-alpha.1",
     "angular-jwt": "^0.1.9"
   },

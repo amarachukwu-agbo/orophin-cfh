@@ -68,7 +68,7 @@
                   </div>
                 </div>
                 <div id="question-container-outer">
-                  <question></question>
+                  <question ng-controller="InviteUserController"></question>
                 </div>
               </div>
           </div>
@@ -100,8 +100,7 @@
                   </div>
                 </li>
               </ul>
-              <form ng-submit="addChat()" class="chat-box__form">
-                <img src="https://image.flaticon.com/icons/png/512/42/42877.png" alt="">
+              <form class="chat-box__form" submit="addChat()" ng-submit="addChat()">
                 <input type="text" placeholder="donated? tell people about it" ng-model="content" id="chatInput"/>
               </form> 
             </div>
@@ -115,4 +114,5 @@
           </div>
       </div>
   </div>
+  <script type="text/javascript" src='/js/emojis.js'></script>
 </div>

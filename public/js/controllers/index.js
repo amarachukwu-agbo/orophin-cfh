@@ -71,7 +71,7 @@ angular.module('mean.system')
         $scope.errorMessage = err.data.message;
         // clear error message  after 5 seconds
         setTimeout(() => {
-          $scope.error = '';
+          $scope.errorMessage = '';
         }, 5000);
       };
 
@@ -91,7 +91,7 @@ angular.module('mean.system')
 
       // function to signup user
       $scope.signUp = () => {
-        if ($scope.data.name && $scope.data.email && $scope.data.password) {
+        if ($scope.data.name && $scope.data.email && $scope.data.password && $scope.data.avatar) {
           $http.post('/api/auth/signup', JSON.stringify($scope.data))
             .then(
               // success callback
@@ -99,6 +99,13 @@ angular.module('mean.system')
               // error callback
               onError
             );
+        } else {
+          // set error message
+          $scope.errorMessage = 'all fields are required';
+          // clear error message  after 5 seconds
+          setTimeout(() => {
+            $scope.errorMessage = '';
+          }, 5000);
         }
       };
 
